@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: BlinkMacSystemFont, "Segoe UI"
 }
 
 body {
@@ -19,26 +19,65 @@ body {
   align-items: center;
   padding: 20px 25px;
   background-color: #552858;
-  box-shadow: 0 4px 8px rgba(0,0.1,0.1,0.6);
+  box-shadow: 0 4px 8px rgba(0, 0.1, 0.1, 0.6);
 }
 
-.CadEdu{
-    color: white;
+.CadEdu {
+  color: white;
 }
 
-.sidebar{
-    position: fixed;
-    top: 83px;
-    left: 0;
-    height: 100%;
-    width: 300px;
-    background-color: #f6eaf8;
-    box-shadow: 0 4px 10px rgba(0,0.1,0.1,0.6);
-    padding: 25px;
+.sidebar {
+  position: fixed;
+  top: 83px;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  background-color: #f6eaf8;
+  box-shadow: 0 4px 10px rgba(0, 0.1, 0.1, 0.6);
+  padding: 25px;
 }
 
-.siderbar-elements{
-    margin: 20px 0;
+.sidebar-elements{
+  color: #552858;
+  margin: 10px 0;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.sidebar-elements:hover {
+    opacity: 0.6;
+  }
+
+.titulo {
+    color: #440648;
+    margin-left: 320px;
+    margin-top: 90px;
     padding: 20px;
-    display: block;
 }
+
+.subtitulo {
+    color: #440648;
+    font-size: 12px;
+    margin-left: 320px;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+
+.menu-button {
+    margin-top: 15px;
+    background-color: #582c5f;
+    color: white;
+    border: none;
+    padding: 12px 60px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+
+
