@@ -40,13 +40,23 @@ body {
   padding: 25px;
 }
 
-.sidebar-elements {
+/* .sidebar-elements {
   color: #552858;
   margin: 10px 0;
   display: block;
   text-decoration: none;
   cursor: pointer;
   font-size: 13px;
+  font-weight: 200;
+} */
+
+.sidebar-elements-href {
+  color: #552858;
+  margin: 10px 0;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 18px;
   font-weight: 200;
 }
 
