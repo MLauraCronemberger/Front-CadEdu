@@ -65,9 +65,24 @@ body {
   }
 
 .main {
+    flex:1;
     margin-left: 300px;
     margin-top: 80px;
     padding: 20px;
+}
+
+.col1, .col2 {
+  width: 48%; /* Garante que cada coluna ocupe metade do espaço disponível */
+  padding: 4px;
+
+}
+
+
+.container {
+  display: flex; /* Usa flexbox para colocar col1 e col2 lado a lado */
+  justify-content: space-between; /* Distribui as colunas */
+  width: 100%;
+  margin-top: -20px; /* Considera o margin-left da .main */
 }
 
 .section {
@@ -158,9 +173,53 @@ body {
   margin-bottom: 10px;
 }
 
+
 .dropdown-select:focus {
  border-color: #582c5f;
 }
+
+.dropdown-select-col {
+  width: 70%;
+  padding: 8px;
+  border: 1px solid #582c5f;
+  border-radius: 4px;
+  background-color: white;
+  color: #333;
+  font-size: 14px;
+  outline: none;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.forms-col input {
+  width: 70%;
+  padding: 8px;
+  border: 1px solid #582c5f;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.forms-file input {
+  background-color: white;
+  width: 70%;
+  padding: 8px;
+  border: 1px solid #582c5f;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
 
 
 
