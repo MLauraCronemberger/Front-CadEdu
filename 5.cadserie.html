@@ -36,10 +36,10 @@
       <div class="input-info">
         <h1>Série</h1>
         <div class="forms">
-        <input type= "number" >
+        <input type= "text" id="cad_serie" name="serie_cadastrada" required>
 
         <h1>Nível de Ensino</h1>
-        <select class="dropdown-select">
+        <select id="cad_nivelEnsino" name="nivelEnsino_cadastrado" class="dropdown-select" required>
             <option value="" disabled selected></option>
             <option value="Ensino Infantil">Ensino Infantil</option>
             <option value="Ensino Fundamental I">Ensino Fundamental I</option>
@@ -49,10 +49,10 @@
 
         <h1>Turma</h1>
         <div class="forms">
-        <input type= "text">
+        <input type= "text" id="cad_turma" name="turma_cadastrada" required>
 
         <h1>Turno</h1>
-        <select class="dropdown-select">
+        <select id="cad_turno" name="turno_cadastrado" class="dropdown-select" required>
             <option value="" disabled selected></option>
             <option value="Matutino">Matutino</option>
             <option value="Vespertino">Vespertino</option>
