@@ -210,7 +210,8 @@ body {
   margin-bottom: 10px;
 }
 
-/* Login page specific styles */
+/* CSS LOGIN E CADASTRO */
+
 .container-login {
   width: 100%;
   max-width: 500px;
@@ -246,7 +247,7 @@ body {
 }
 
 .section-access {  
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   text-align: left;
 }
 
