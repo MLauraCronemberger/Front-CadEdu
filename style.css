@@ -148,13 +148,14 @@ body {
 .dropdown-select {
   width: 30%;
   padding: 8px;
-  margin-top: 10px;
   border: 1px solid #582c5f;
   border-radius: 4px;
   background-color: white;
   color: #333;
   font-size: 14px;
   outline: none;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .dropdown-select:focus {
