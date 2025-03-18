@@ -17,7 +17,7 @@ body {
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Garante que o CadEdu e o Sai estejam nas extremidades */
   align-items: center;
   padding: 16px 25px;
   background-color: #552858;
@@ -29,9 +29,16 @@ body {
   font-size: 15px;
 }
 
+.logout h1{
+  color: white;
+  font-size: 15px;
+  cursor: pointer; /* Para indicar que é interativo */
+}
+
+
 .sidebar {
   position: fixed;
-  top: 78px;
+  top: 77px;
   left: 0;
   height: 100%;
   width: 300px;
