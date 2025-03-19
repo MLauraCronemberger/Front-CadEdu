@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CadEdu- Editar Disciplina</title>
+    <link rel="stylesheet" href="style.css" />
+
+  </head>
+
+  <body>
+    <header class="top-header">
+      <div class="CadEdu">
+        <h1>CadEdu</h1>
+      </div>
+      <div class="logout">
+        <a href="1.login.html"><h1>Sair</h1></a>
+      </div>
+    </header>
+
+    <aside class="sidebar">
+        <div class="sidebar-elements">
+          <a href="3.menu.html" class="sidebar-elements-href">Menu</a>
+        </div>
+        <div class="sidebar-elements">
+          <a href="4.cadastrar.html" class="sidebar-elements-href">Cadastrar Informações</a>
+        </div>
+      </aside>
+
+    <main class="main">
+      <div class="section">
+        <h1>Editar Disciplina</h1>
+      </div>
+
+      <div class="input-info">
+        <h1>Nome da Disciplina</h1>
+        <div class="forms">
+        <input type= "text" id="cad_disc" name="cad_disc" value="Física" required>
+
+        <h1>Carga Horária</h1>
+        <div class="forms">
+        <input type= "text" id="cad_ch" name="cad_ch" value="60hrs" required>
+
+        <h1>Nível de Ensino Alvo</h1>
+        <select id="nivelEnsino_disc" name="nivelEnsino_disc" class="dropdown-select" required>
+            <option value="" disabled selected></option>
+            <option value="Ensino Infantil">Ensino Infantil</option>
+            <option value="Ensino Fundamental I">Ensino Fundamental I</option>
+            <option value="Ensino Fundamental II">Ensino Fundamental II</option>
+            <option value="Ensino Médio" selected>Ensino Médio</option>
+        </select>
+
+        <h1>Séries Relacionadas</h1>
+        <select id="serie_disc" name="serie_disc" class="dropdown-select" required>
+            <option value="" disabled selected></option>
+            <option value="1º-EF1">1º-EF1</option>
+            <option value="2º- EF1">2º- EF1</option>
+            <option value="3º- EM" selected>3º- EM</option>
+        </select>
+
+    </div>
+
+    <a href="3.4.lista_disciplinas.html"><button class="submit-button">Editar</button></a>
+        
+
+    </main>
+
+
+  </body>
+</html>

@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CadEdu- Cadastrar Docente</title>
+    <title>CadEdu- Editar Aluno</title>
     <link rel="stylesheet" href="style.css" />
 
   </head>
@@ -30,7 +30,7 @@
 
     <main class="main">
       <div class="section">
-        <h1>Cadastrar Aluno</h1>
+        <h1>Editar Aluno</h1>
       </div>
         <div class="container">
           <main class="col1">
@@ -40,19 +40,19 @@
             <div class="input-info">
               <h1>Nome Completo</h1>
               <div class="forms-col">
-              <input type= "text" id="nome_aluno" name="nome_aluno" required> 
+              <input type= "text" id="nome_aluno" name="nome_aluno" value="Maria Laura Rangel Urbano Cronemberger" required> 
 
               <h1>CPF</h1>
               <div class="forms-col">
-              <input type= "text" id="cpf_aluno" name="cpf_aluno" required> 
+              <input type= "text" id="cpf_aluno" name="cpf_aluno" value="000.000.000-00" required> 
 
               <h1>Data de Nascimento</h1>
               <div class="forms-col">
-              <input type= "date" id="dnasc_aluno" name="dnasc_aluno" required> 
+              <input type= "date" id="dnasc_aluno" name="dnasc_aluno" value="2005-06-08" required> 
 
               <h1>Responsável</h1>
               <div class="forms-col">
-              <input type= "text" id="responsavel_aluno" name="responsavel_aluno" required>
+              <input type= "text" id="responsavel_aluno" name="responsavel_aluno" value="Lauro Cronemberger" required>
               
               <h1>Foto 3x4</h1>
               <div class="forms-file">
@@ -74,21 +74,21 @@
                   <option value="Ensino Infantil">Ensino Infantil</option>
                   <option value="Ensino Fundamental I">Ensino Fundamental I</option>
                   <option value="Ensino Fundamental II">Ensino Fundamental II</option>
-                  <option value="Ensino Médio">Ensino Médio</option>
+                  <option value="Ensino Médio" selected>Ensino Médio</option>
               </select>
 
               <h1>Série Atual</h1>
-              <select id="serie_aluno" name="serie_aluno" class="dropdown-select-col" required>
+              <select id="serie_aluno" name="serie_aluno" class="dropdown-select-col"  required>
                   <option value="" disabled selected></option>
                   <option value="1º">1º</option>
                   <option value="2º">2º</option>
-                  <option value="3º">3º</option>
+                  <option value="3º" selected>3º</option>
               </select>
 
               <h1>Turma</h1>
               <select id="turma_aluno" name="turma_aluno" class="dropdown-select-col" required>
                   <option value="" disabled selected></option>
-                  <option value="A">A</option>
+                  <option value="A" selected>A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
               </select>
@@ -97,11 +97,11 @@
               <select id="turno_aluno" name="turno_aluno" class="dropdown-select-col" required>
                   <option value="" disabled selected></option>
                   <option value="Matutino">Matutino</option>
-                  <option value="Vespertino">Vespertino</option>
+                  <option value="Vespertino" selected>Vespertino</option>
                   <option value="Noturno">Noturno</option>
               </select>
 
-              <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a>
+              <a href="3.1.lista_alunos.html"><button class="submit-button">Editar</button></a>
            
           </main>
 
