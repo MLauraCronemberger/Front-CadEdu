@@ -313,3 +313,90 @@ body {
   margin-top: 10px;
   font-size: 14px;
 }
+
+/* LISTAGEM */
+
+.main-content {
+  padding: 20px;
+}
+
+.page-title {
+  color: #552858;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  margin-bottom: 30px;
+}
+
+.search-label {
+  display: block;
+  color: #552858;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  width: 60%;
+  padding: 8px;
+  border: 1px solid #582c5f;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.search-button {
+  background-color: #582c5f;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0.1, 0.1, 0.6);
+}
+
+.search-button:hover {
+  opacity: 0.9;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.students-table th {
+  background-color: #f6eaf8;
+  color: #552858;
+  text-align: left;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.students-table td {
+  padding: 10px;
+  border-bottom: 1px solid white;
+  font-size: 14px;
+}
+
+.edit-button {
+  background-color: #582c5f;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0.1, 0.1, 0.3);
+}
+
+.edit-button:hover {
+  opacity: 0.9;
+}
+
+.empty-row {
+  height: 40px;
+}
