@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CadEdu- Cadastrar Disciplina</title>
+    <title>CadEdu- Editar Disciplina</title>
     <link rel="stylesheet" href="style.css" />
 
   </head>
@@ -30,17 +30,17 @@
 
     <main class="main">
       <div class="section">
-        <h1>Cadastrar Disciplina</h1>
+        <h1>Editar Disciplina</h1>
       </div>
 
       <div class="input-info">
         <h1>Nome da Disciplina</h1>
         <div class="forms">
-        <input type= "text" id="disc" name="disc" required>
+        <input type= "text" id="disc" name="disc" value="Física" required>
 
         <h1>Carga Horária</h1>
         <div class="forms">
-        <input type= "text" id="ch" name="ch" required>
+        <input type= "text" id="ch" name="ch" value="60hrs" required>
 
         <h1>Nível de Ensino Alvo</h1>
         <select id="nivelEnsino_disc" name="nivelEnsino_disc" class="dropdown-select" required>
@@ -48,7 +48,7 @@
             <option value="Ensino Infantil">Ensino Infantil</option>
             <option value="Ensino Fundamental I">Ensino Fundamental I</option>
             <option value="Ensino Fundamental II">Ensino Fundamental II</option>
-            <option value="Ensino Médio">Ensino Médio</option>
+            <option value="Ensino Médio" selected>Ensino Médio</option>
         </select>
 
         <h1>Séries Relacionadas</h1>
@@ -56,12 +56,12 @@
             <option value="" disabled selected></option>
             <option value="1º-EF1">1º-EF1</option>
             <option value="2º- EF1">2º- EF1</option>
-            <option value="3º- EM">3º- EM</option>
+            <option value="3º- EM" selected>3º- EM</option>
         </select>
 
     </div>
 
-    <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a>
+    <a href="3.4.lista_disciplinas.html"><button class="submit-button">Editar</button></a>
         
 
     </main>

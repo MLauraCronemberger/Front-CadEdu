@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CadEdu- Cadastrar Docente</title>
+    <title>CadEdu- Editar Docente</title>
     <link rel="stylesheet" href="style.css" />
 
   </head>
@@ -30,7 +30,7 @@
 
     <main class="main">
       <div class="section">
-        <h1>Cadastrar Docente</h1>
+        <h1>Editar Docente</h1>
       </div>
         <div class="container">
           <main class="col1">
@@ -40,23 +40,23 @@
             <div class="input-info">
               <h1>Nome Completo</h1>
               <div class="forms-col">
-              <input type= "text" id="nome_docente" name="nome_docente" required> 
+              <input type= "text" id="nome_docente" name="nome_docente" value="André Bezerra" required> 
 
               <h1>CPF</h1>
               <div class="forms-col">
-              <input type= "text" id="cpf_docente" name="cpf_docente" required> 
+              <input type= "text" id="cpf_docente" name="cpf_docente" value="000.000.000-00" required> 
 
               <h1>Data de Nascimento</h1>
               <div class="forms-col">
-              <input type= "date" id="dnasc_docente" name="dnasc_docente" required> 
+              <input type= "date" id="dnasc_docente" name="dnasc_docente" value="1972-09-12" required> 
 
               <h1>Telefone/Celular</h1>
               <div class="forms-col">
-              <input type= "text" id="tel_docente" name="tel_docente" required>
+              <input type= "text" id="tel_docente" name="tel_docente" value="00 00000-0000" required>
               
               <h1>E-mail</h1>
               <div class="forms-col">
-              <input type= "text" id="email_docente" name="email_docente" required> 
+              <input type= "text" id="email_docente" name="email_docente" value="a@b.com" required> 
 
             </div>
            
@@ -70,14 +70,14 @@
 
               <h1>Cargo</h1>
               <div class="forms-col">
-              <input type= "text" id="cargo_docente" name="cargo_docente" required> 
+              <input type= "text" id="cargo_docente" name="cargo_docente" value="Professor" required> 
 
               <h1>Disciplina Relacionada</h1>
               <select id="disc_docente" name="disc_docente" class="dropdown-select-col" required>
                   <option value="" disabled selected></option>
                   <option value="Matemática">Matemática</option>
                   <option value="Português">Português</option>
-                  <option value="Física">Física</option>
+                  <option value="Física" selected>Física</option>
               </select>
 
               <h1>Séries Relacionadas</h1>
@@ -85,18 +85,18 @@
                   <option value="" disabled selected></option>
                   <option value="1ºA">1ºA</option>
                   <option value="2ºA">2ºA</option>
-                  <option value="3ºA">3ºA</option>
+                  <option value="3ºA" selected>3ºA</option>
               </select>
 
               <h1>Turno</h1>
               <select id="turno_docente" name="turno_docente" class="dropdown-select-col" required>
                   <option value="" disabled selected></option>
                   <option value="Matutino">Matutino</option>
-                  <option value="Vespertino">Vespertino</option>
+                  <option value="Vespertino" selected>Vespertino</option>
                   <option value="Noturno">Noturno</option>
               </select>
 
-              <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a>
+              <a href="3.2.lista_docentes.html"><button class="submit-button">Editar</button></a>
            
           </main>
 

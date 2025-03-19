@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CadEdu- Cadastrar Série</title>
+    <title>CadEdu- Editar Série</title>
     <link rel="stylesheet" href="style.css" />
 
   </head>
@@ -30,13 +30,13 @@
 
     <main class="main">
       <div class="section">
-        <h1>Cadastrar Série</h1>
+        <h1>Editar Série</h1>
       </div>
 
       <div class="input-info">
         <h1>Série</h1>
         <div class="forms">
-        <input type= "text" id="serie" name="serie" required>
+        <input type= "text" id="serie" name="serie" value="3º" required>
 
         <h1>Nível de Ensino</h1>
         <select id="nivelEnsino_serie" name="nivelEnsino_serie" class="dropdown-select" required>
@@ -44,7 +44,7 @@
             <option value="Ensino Infantil">Ensino Infantil</option>
             <option value="Ensino Fundamental I">Ensino Fundamental I</option>
             <option value="Ensino Fundamental II">Ensino Fundamental II</option>
-            <option value="Ensino Médio">Ensino Médio</option>
+            <option value="Ensino Médio" selected>Ensino Médio</option>
         </select>
 
         <h1>Turma</h1>
@@ -52,37 +52,20 @@
         <input type= "text" id="turma_serie" name="turma_serie" required>
 
         <h1>Turno</h1>
-        <select id="turno_serie" name="turno_serie" class="dropdown-select" required>
+        <select id="turno_serie" name="turno_serie" class="dropdown-select" required></select>
             <option value="" disabled selected></option>
             <option value="Matutino">Matutino</option>
-            <option value="Vespertino">Vespertino</option>
+            <option value="Vespertino" selected>Vespertino</option>
             <option value="Noturno">Noturno</option>
         </select>
 
     </div>
 
-    <!-- <a href="4.cadastrar.html"><button id="cadastrar" class="submit-button">Cadastrar</button></a> -->
-    <button id="cadastrar" class="submit-button">Cadastrar</button>
+    <a href="3.3.lista_series.html"><button class="submit-button">Editar</button></a>
         
 
     </main>
 
-    <script>
-
-document.getElementById('cadastrar').addEventListener("click", ()=>{
-      const cadastro_serie = {
-        serie: document.getElementById('serie').value,
-        nivelEnsino_serie: document.getElementById('nivelEnsino_serie').value,
-        turma_serie: document.getElementById('turma_serie').value,
-        turno_serie: document.getElementById('turno_serie').value
-      }
-      console.log(cadastro_serie)
-    })
-
-      
-    </script>
-
 
   </body>
 </html>
-
