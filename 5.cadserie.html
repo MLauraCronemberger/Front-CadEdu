@@ -63,7 +63,6 @@
 
     <!-- <a href="4.cadastrar.html"><button id="cadastrar" class="submit-button">Cadastrar</button></a> -->
     <button id="cadastrar" class="submit-button">Cadastrar</button>
-        
 
     </main>
 
@@ -77,9 +76,15 @@ document.getElementById('cadastrar').addEventListener("click", ()=>{
         turno_serie: document.getElementById('turno_serie').value
       }
       console.log(cadastro_serie)
+
+      function redirecionar (){
+        window.location.href = "4.cadastrar.html";
+      }
+
+      redirecionar();
     })
 
-      
+    
     </script>
 
 
