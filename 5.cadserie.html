@@ -61,10 +61,26 @@
 
     </div>
 
-    <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a>
+    <!-- <a href="4.cadastrar.html"><button id="cadastrar" class="submit-button">Cadastrar</button></a> -->
+    <button id="cadastrar" class="submit-button">Cadastrar</button>
         
 
     </main>
+
+    <script>
+
+document.getElementById('cadastrar').addEventListener("click", ()=>{
+      const cadastro_serie = {
+        serie: document.getElementById('serie').value,
+        nivelEnsino_serie: document.getElementById('nivelEnsino_serie').value,
+        turma_serie: document.getElementById('turma_serie').value,
+        turno_serie: document.getElementById('turno_serie').value
+      }
+      console.log(cadastro_serie)
+    })
+
+      
+    </script>
 
 
   </body>
