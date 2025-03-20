@@ -106,9 +106,28 @@
           </main>
 
         </div>
-        
-
     </main>
+
+    <script>
+      document.getElementById('cadastrar').addEventListener("click", ()=>{
+        const alunoCadastrado = {
+          nomeAluno: document.getElementById('nomeAluno').value,
+          cpfAluno: document.getElementById('cpfAluno').value,
+          datnascAluno: document.getElementById('datnascAluno').value,
+          responsavel: document.getElementById('responsavel').value,
+          nivelEnsinoAluno: document.getElementById('nivelEnsinoAluno').value,
+      }
+    console.log(alunoCadastrado);
+
+    function redirecionar(){
+      window.location.href = "4.cadastrar.html"
+
+    }
+
+    redirecionar();
+    
+    })
+    </script>
 
 
   </body>

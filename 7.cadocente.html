@@ -96,14 +96,37 @@
                   <option value="Noturno">Noturno</option>
               </select>
 
-              <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a>
+              <button class="submit-button">Cadastrar</button>
+              <!-- <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a> -->
            
           </main>
 
         </div>
-        
-
     </main>
+
+    <script>
+      document.getElementById('cadastrar').addEventListener("click", ()=>{
+        const docenteCadastrado = {
+          nomeDocente: document.getElementById('nomeDocente').value,
+          cpfDocente: document.getElementById('cpfDocente').value,
+          dnascDocente: document.getElementById('dnascDocente').value,
+          telDocente: document.getElementById('telDocente').value,
+          emailDocente: document.getElementById('emailDocente').value,
+          cargoDocente: document.getElementById('cargoDocente').value,
+          discDocente: document.getElementById('discDocente').value,
+          serieDocente: document.getElementById('serieDocente').value,
+          turnoDocente: document.getElementById('turnoDocente').value
+        }
+        console.log(docenteCadastrado)
+
+        function redirecionar(){
+          window.location.href = "4.cadastrar.html";
+        }
+
+        redirecionar();
+      })
+
+    </script>
 
 
   </body>

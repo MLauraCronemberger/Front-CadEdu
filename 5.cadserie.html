@@ -69,19 +69,20 @@
     <script>
 
 document.getElementById('cadastrar').addEventListener("click", ()=>{
-      const cadastro_serie = {
+      const serieCadastrada = {
         serie: document.getElementById('serie').value,
         nivelEnsino_serie: document.getElementById('nivelEnsinoSerie').value,
         turma_serie: document.getElementById('turmaSerie').value,
         turno_serie: document.getElementById('turnoSerie').value
       }
-      console.log(cadastro_serie)
+      console.log(serieCadastrada)
 
       function redirecionar (){
         window.location.href = "4.cadastrar.html";
       }
 
       redirecionar();
+
     })
 
     </script>
