@@ -61,10 +61,36 @@
 
     </div>
 
-    <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a>
+    <button class="submit-button" id="cadastrar">Cadastrar</button>
+
         
 
     </main>
+
+    <script>
+
+      document.getElementById('cadastrar').addEventListener("click", ()=>{
+        const disciplinaCadastrada= {
+          disc: document.getElementById('disc').value,
+          ch: document.getElementById('ch').value,
+          nivelEnsinoDisc: document.getElementById('nivelEnsinoDisc').value,
+          serieDisc: document.getElementById('serieDisc').value
+        }
+
+        console.log(disciplinaCadastrada)
+
+        function redirecionar(){
+          window.location.href= '4.cadastrar.html'
+        }
+
+        redirecionar();
+
+
+
+      })
+
+
+    </script>
 
 
   </body>
