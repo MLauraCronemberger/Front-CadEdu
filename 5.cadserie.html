@@ -39,7 +39,7 @@
         <input type= "text" id="serie" name="serie" required>
 
         <h1>Nível de Ensino</h1>
-        <select id="nivelEnsino_serie" name="nivelEnsino_serie" class="dropdown-select" required>
+        <select id="nivelEnsinoSerie" name="nivelEnsinoSerie" class="dropdown-select" required>
             <option value="" disabled selected></option>
             <option value="Ensino Infantil">Ensino Infantil</option>
             <option value="Ensino Fundamental I">Ensino Fundamental I</option>
@@ -49,10 +49,10 @@
 
         <h1>Turma</h1>
         <div class="forms">
-        <input type= "text" id="turma_serie" name="turma_serie" required>
+        <input type= "text" id="turmaSerie" name="turmaSerie" required>
 
         <h1>Turno</h1>
-        <select id="turno_serie" name="turno_serie" class="dropdown-select" required>
+        <select id="turnoSerie" name="turnoSerie" class="dropdown-select" required>
             <option value="" disabled selected></option>
             <option value="Matutino">Matutino</option>
             <option value="Vespertino">Vespertino</option>
@@ -71,9 +71,9 @@
 document.getElementById('cadastrar').addEventListener("click", ()=>{
       const cadastro_serie = {
         serie: document.getElementById('serie').value,
-        nivelEnsino_serie: document.getElementById('nivelEnsino_serie').value,
-        turma_serie: document.getElementById('turma_serie').value,
-        turno_serie: document.getElementById('turno_serie').value
+        nivelEnsino_serie: document.getElementById('nivelEnsinoSerie').value,
+        turma_serie: document.getElementById('turmaSerie').value,
+        turno_serie: document.getElementById('turnoSerie').value
       }
       console.log(cadastro_serie)
 
