@@ -101,7 +101,8 @@
                   <option value="Noturno">Noturno</option>
               </select>
 
-              <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a>
+              <button class="submit-button" id="cadastrar">Cadastrar</button>
+              <!-- <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a> -->
            
           </main>
 
@@ -116,15 +117,18 @@
           datnascAluno: document.getElementById('datnascAluno').value,
           responsavel: document.getElementById('responsavel').value,
           nivelEnsinoAluno: document.getElementById('nivelEnsinoAluno').value,
+          serieAluno: document.getElementById('serieAluno').value,
+          turmaAluno: document.getElementById('turmaAluno').value,
+          turnoAluno: document.getElementById('turnoAluno').value
       }
     console.log(alunoCadastrado);
 
-    function redirecionar(){
-      window.location.href = "4.cadastrar.html"
+    // function redirecionar(){
+    //   window.location.href = "4.cadastrar.html"
 
-    }
+    // }
 
-    redirecionar();
+    // redirecionar();
     
     })
     </script>
