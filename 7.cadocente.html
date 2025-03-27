@@ -83,9 +83,9 @@
               <h1>Séries Relacionadas</h1>
               <select id="serieDocente" name="serieDocente" class="dropdown-select-col" required>
                   <option value="" disabled selected></option>
-                  <option value="1ºA">1ºA</option>
-                  <option value="2ºA">2ºA</option>
-                  <option value="3ºA">3ºA</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
               </select>
 
               <h1>Turno</h1>
@@ -107,17 +107,27 @@
     <script>
       document.getElementById('cadastrar').addEventListener("click", ()=>{
         const docenteCadastrado = {
-          nomeDocente: document.getElementById('nomeDocente').value,
-          cpfDocente: document.getElementById('cpfDocente').value,
-          dnascDocente: document.getElementById('dnascDocente').value,
-          telDocente: document.getElementById('telDocente').value,
-          emailDocente: document.getElementById('emailDocente').value,
-          cargoDocente: document.getElementById('cargoDocente').value,
-          discDocente: document.getElementById('discDocente').value,
-          serieDocente: document.getElementById('serieDocente').value,
-          turnoDocente: document.getElementById('turnoDocente').value
+          nome: document.getElementById('nomeDocente').value,
+          cpf: document.getElementById('cpfDocente').value,
+          datnasc: document.getElementById('dnascDocente').value,
+          tel: document.getElementById('telDocente').value,
+          email: document.getElementById('emailDocente').value,
+          cargo: document.getElementById('cargoDocente').value,
+          // disc: document.getElementById('discDocente').value,
+          // serie: document.getElementById('serieDocente').value,
+          // turno: document.getElementById('turnoDocente').value
         }
+
+        fetch("http://localhost:8080/docente/cadastrar", {
+        method: "POST", // HTTP method
+        headers: {
+            "Content-Type": "application/json" // Specify the content type
+        },
+        body: JSON.stringify(docenteCadastrado) // Convert data to JSON string
+      }).then(r => {
         console.log(docenteCadastrado)
+        console.log("cadastro com sucesso!")
+      })
 
       //   function redirecionar(){
       //     window.location.href = "4.cadastrar.html";

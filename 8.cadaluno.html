@@ -69,7 +69,7 @@
             <div class="input-info">
 
               <h1>Nível de Ensino</h1>
-              <select id="nivelEnsinoAluno" name="nivelEnsinoAluno" class="dropdown-select-col" required>
+              <select id="nivelEnsino" name="nivelEnsino" class="dropdown-select-col" required>
                   <option value="" disabled selected></option>
                   <option value="Ensino Infantil">Ensino Infantil</option>
                   <option value="Ensino Fundamental I">Ensino Fundamental I</option>
@@ -80,9 +80,9 @@
               <h1>Série Atual</h1>
               <select id="serieAluno" name="serieAluno" class="dropdown-select-col" required>
                   <option value="" disabled selected></option>
-                  <option value="1º">1º</option>
-                  <option value="2º">2º</option>
-                  <option value="3º">3º</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
               </select>
 
               <h1>Turma</h1>
@@ -112,16 +112,28 @@
     <script>
       document.getElementById('cadastrar').addEventListener("click", ()=>{
         const alunoCadastrado = {
-          nomeAluno: document.getElementById('nomeAluno').value,
-          cpfAluno: document.getElementById('cpfAluno').value,
-          datnascAluno: document.getElementById('datnascAluno').value,
+          nome: document.getElementById('nomeAluno').value,
+          cpf: document.getElementById('cpfAluno').value,
+          datnasc: document.getElementById('datnascAluno').value,
           responsavel: document.getElementById('responsavel').value,
-          nivelEnsinoAluno: document.getElementById('nivelEnsinoAluno').value,
-          serieAluno: document.getElementById('serieAluno').value,
-          turmaAluno: document.getElementById('turmaAluno').value,
-          turnoAluno: document.getElementById('turnoAluno').value
+          foto: document.getElementById('fotoAluno').value,
+          // nivelEnsino: document.getElementById('nivelEnsinoAluno').value,
+          // serie: document.getElementById('serieAluno').value,
+          // turma: document.getElementById('turmaAluno').value,
+          // turno: document.getElementById('turnoAluno').value
       }
-    console.log(alunoCadastrado);
+
+      fetch("http://localhost:8080/aluno/cadastrar", {
+        method: "POST", // HTTP method
+        headers: {
+            "Content-Type": "application/json" // Specify the content type
+        },
+        body: JSON.stringify(alunoCadastrado) // Convert data to JSON string
+      }).then(r => {
+        console.log(alunoCadastrado)
+        console.log("cadastro com sucesso!")
+      })
+
 
     // function redirecionar(){
     //   window.location.href = "4.cadastrar.html"

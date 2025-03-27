@@ -42,21 +42,12 @@
         <div class="forms">
         <input type= "text" id="ch" name="ch" required>
 
-        <h1>Nível de Ensino Alvo</h1>
-        <select id="nivelEnsinoDisc" name="nivelEnsinoDisc" class="dropdown-select" required>
-            <option value="" disabled selected></option>
-            <option value="Ensino Infantil">Ensino Infantil</option>
-            <option value="Ensino Fundamental I">Ensino Fundamental I</option>
-            <option value="Ensino Fundamental II">Ensino Fundamental II</option>
-            <option value="Ensino Médio">Ensino Médio</option>
-        </select>
-
         <h1>Séries Relacionadas</h1>
-        <select id="serieDisc" name="serieDisc" class="dropdown-select" required>
+        <select id="serie" name="serie" class="dropdown-select" required>
             <option value="" disabled selected></option>
-            <option value="1º-EF1">1º-EF1</option>
-            <option value="2º- EF1">2º- EF1</option>
-            <option value="3º- EM">3º- EM</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
         </select>
 
     </div>
@@ -73,19 +64,25 @@
         const disciplinaCadastrada= {
           disc: document.getElementById('disc').value,
           ch: document.getElementById('ch').value,
-          nivelEnsinoDisc: document.getElementById('nivelEnsinoDisc').value,
-          serieDisc: document.getElementById('serieDisc').value
+          // serie: document.getElementById('serie').value
         }
 
+        fetch("http://localhost:8080/disciplina/cadastrar", {
+        method: "POST", // HTTP method
+        headers: {
+            "Content-Type": "application/json" // Specify the content type
+        },
+        body: JSON.stringify(disciplinaCadastrada) // Convert data to JSON string
+      }).then(r => {
         console.log(disciplinaCadastrada)
+        console.log("cadastro com sucesso!")
+      })
 
         // function redirecionar(){
         //   window.location.href= '4.cadastrar.html'
         // }
 
         // redirecionar();
-
-
 
       })
 
