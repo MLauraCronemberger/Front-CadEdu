@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CadEdu- Séries Cadastradas</title>
     <link rel="stylesheet" href="style.css" />
-
   </head>
 
   <body>
@@ -24,68 +22,64 @@
         <a href="3.menu.html" class="sidebar-elements-href">Menu</a>
       </div>
       <div class="sidebar-elements">
-        <a href="4.cadastrar.html" class="sidebar-elements-href">Cadastrar Informações</a>
+        <a href="4.cadastrar.html" class="sidebar-elements-href"
+          >Cadastrar Informações</a
+        >
       </div>
     </aside>
 
-    
-
     <div class="main">
-        <div class="main-content">
-            <h1 class="page-title">Séries Cadastradas</h1>
-            
-            <div class="search-container">
-                <label class="search-label">Pesquisar Série</label>
-                <input type="text" class="search-input" placeholder="Digite o número da série:">
-                <button class="search-button">Pesquisar</button>
-            </div>
-            
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Série</th>
-                        <th>Turma</th>
-                        <th>Nível de Ensino</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="listagemSeries">
-                    <tr data-id="infoSerie" value="">
-                    </tr>
-                </tbody>
-            </table>
+      <div class="main-content">
+        <h1 class="page-title">Séries Cadastradas</h1>
+
+        <div class="search-container">
+          <label class="search-label">Pesquisar Série</label>
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Digite o número da série:"
+          />
+          <button class="search-button">Pesquisar</button>
         </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Série</th>
+              <th>Turma</th>
+              <th>Nível de Ensino</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="listagemSeries">
+            <tr data-id="infoSerie" value=""></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-
-<script>
-
-document.addEventListener("DOMContentLoaded", function(){
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
         fetch("http://localhost:8080/serie/cadastradas")
-        .then(response => response.json())
-        .then(data =>{
-          let listagem = document.getElementById("listagemSeries");
+          .then((response) => response.json())
+          .then((data) => {
+            let listagem = document.getElementById("listagemSeries");
 
-          data.forEach(serie => {
-            let tr = document.createElement("tr");
-            tr.value= serie.id;
-            tr.innerHTML= `
+            data.forEach((serie) => {
+              let tr = document.createElement("tr");
+              tr.value = serie.id;
+              tr.innerHTML = `
             <td>${serie.serie} </td>
-            <td>${serie.nivel} </td>
+            <td>${serie.turma} </td>
             <td>${serie.nivelEnsino} </td>
-            <td><a> href="3.3.1.editar_serie.html"><button class="edit-button">Editar</button></a></td>
+            <td><button class="edit-button">Editar</button></td>
             `;
-            listagem.appendChild(tr);
-          });
+              listagem.appendChild(tr);
+            });
+          })
 
-        })
-
-        .catch(error => console.error("Erro ao carregar séries:", error));
-              
-      })
-
-</script>
-
-
+          .catch((error) => console.error("Erro ao carregar séries:", error));
+      });
+    </script>
   </body>
 </html>
