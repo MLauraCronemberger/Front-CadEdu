@@ -44,77 +44,47 @@
                 <thead>
                     <tr>
                         <th>Série</th>
-                        <th>Nível de Ensino</th>
                         <th>Turma</th>
+                        <th>Nível de Ensino</th>
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>3º</td>
-                        <td>Ensino Médio</td>
-                        <td>C</td>
-                        <td><a href="3.3.1.editar_serie.html"><button class="edit-button">Editar</button></a></td>
-                    </tr>
-                    <tr>
-                        <td>1º</td>
-                        <td>Ensino Médio</td>
-                        <td>B</td>
-                        <td><button class="edit-button">Editar</button></td>
-                    </tr>
-                    <tr>
-                        <td>1º</td>
-                        <td>Ensino Fundamental I</td>
-                        <td>D</td>
-                        <td><button class="edit-button">Editar</button></td>
-                    </tr>
-                    <tr>
-                        <td>7º</td>
-                        <td>Ensino Fundamental II</td>
-                        <td>C</td>
-                        <td><button class="edit-button">Editar</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
+                <tbody id="listagemSeries">
+                    <tr data-id="infoSerie" value="">
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+        fetch("http://localhost:8080/serie/cadastradas")
+        .then(response => response.json())
+        .then(data =>{
+          let listagem = document.getElementById("listagemSeries");
+
+          data.forEach(serie => {
+            let tr = document.createElement("tr");
+            tr.value= serie.id;
+            tr.innerHTML= `
+            <td>${serie.serie} </td>
+            <td>${serie.nivel} </td>
+            <td>${serie.nivelEnsino} </td>
+            <td><a> href="3.3.1.editar_serie.html"><button class="edit-button">Editar</button></a></td>
+            `;
+            listagem.appendChild(tr);
+          });
+
+        })
+
+        .catch(error => console.error("Erro ao carregar séries:", error));
+              
+      })
+
+</script>
 
 
   </body>
