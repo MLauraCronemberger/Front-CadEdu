@@ -39,7 +39,7 @@
         <input type= "text" id="serie" name="serie" required>
 
         <h1>Nível de Ensino</h1>
-        <select id="nivelEnsinoSerie" name="nivelEnsinoSerie" class="dropdown-select" required>
+        <select id="nivel_ensino" name="nivel_ensino" class="dropdown-select" required>
             <option value="" disabled selected></option>
             <option value="Ensino Infantil">Ensino Infantil</option>
             <option value="Ensino Fundamental I">Ensino Fundamental I</option>
@@ -49,10 +49,10 @@
 
         <h1>Turma</h1>
         <div class="forms">
-        <input type= "text" id="turmaSerie" name="turmaSerie" required>
+        <input type= "text" id="turma" name="turma" required>
 
         <h1>Turno</h1>
-        <select id="turnoSerie" name="turnoSerie" class="dropdown-select" required>
+        <select id="turno" name="turno" class="dropdown-select" required>
             <option value="" disabled selected></option>
             <option value="Matutino">Matutino</option>
             <option value="Vespertino">Vespertino</option>
@@ -71,11 +71,24 @@
 document.getElementById('cadastrar').addEventListener("click", ()=>{
       const serieCadastrada = {
         serie: document.getElementById('serie').value,
-        nivelEnsino_serie: document.getElementById('nivelEnsinoSerie').value,
-        turma_serie: document.getElementById('turmaSerie').value,
-        turno_serie: document.getElementById('turnoSerie').value
+        nivelEnsino: document.getElementById('nivel_ensino').value,
+        turma: document.getElementById('turma').value,
+        turno: document.getElementById('turno').value
       }
-      console.log(serieCadastrada)
+
+      fetch("http://localhost:8080/serie/cadastrar", {
+        method: "POST", // HTTP method
+        headers: {
+            "Content-Type": "application/json" // Specify the content type
+        },
+        body: JSON.stringify(serieCadastrada) // Convert data to JSON string
+      }).then(r => {
+        console.log(serieCadastrada)
+        console.log("cadastro com sucesso!")
+      })
+
+
+
 
     //   function redirecionar (){
     //     window.location.href = "4.cadastrar.html";

@@ -42,21 +42,9 @@
         <div class="forms">
         <input type= "text" id="ch" name="ch" required>
 
-        <h1>Nível de Ensino Alvo</h1>
-        <select id="nivelEnsinoDisc" name="nivelEnsinoDisc" class="dropdown-select" required>
-            <option value="" disabled selected></option>
-            <option value="Ensino Infantil">Ensino Infantil</option>
-            <option value="Ensino Fundamental I">Ensino Fundamental I</option>
-            <option value="Ensino Fundamental II">Ensino Fundamental II</option>
-            <option value="Ensino Médio">Ensino Médio</option>
-        </select>
-
         <h1>Séries Relacionadas</h1>
-        <select id="serieDisc" name="serieDisc" class="dropdown-select" required>
-            <option value="" disabled selected></option>
-            <option value="1º-EF1">1º-EF1</option>
-            <option value="2º- EF1">2º- EF1</option>
-            <option value="3º- EM">3º- EM</option>
+        <select id="serie" name="serie" class="dropdown-select" required>
+          <option value="">Selecione uma série</option>
         </select>
 
     </div>
@@ -69,23 +57,49 @@
 
     <script>
 
+      document.addEventListener("DOMContentLoaded", function(){
+        fetch("http://localhost:8080/serie/cadastradas")
+        .then(response => response.json())
+        .then(data =>{
+          let dropdown = document.getElementById("serie");
+
+          data.forEach(serie => {
+            let option = document.createElement("option");
+            option.value= serie.id;
+            option.textContent=  `${serie.serie} ${serie.turma} ${serie.nivelEnsino}`;
+            dropdown.appendChild(option);
+          });
+
+        })
+
+        .catch(error => console.error("Erro ao carregar séries:", error));
+              
+      })
+
+
       document.getElementById('cadastrar').addEventListener("click", ()=>{
         const disciplinaCadastrada= {
           disc: document.getElementById('disc').value,
           ch: document.getElementById('ch').value,
-          nivelEnsinoDisc: document.getElementById('nivelEnsinoDisc').value,
-          serieDisc: document.getElementById('serieDisc').value
+          serie:{ id: document.getElementById('serie').value }
         }
 
+        fetch("http://localhost:8080/disciplina/cadastrar", {
+        method: "POST", // HTTP method
+        headers: {
+            "Content-Type": "application/json" // Specify the content type
+        },
+        body: JSON.stringify(disciplinaCadastrada) // Convert data to JSON string
+      }).then(r => {
         console.log(disciplinaCadastrada)
+        console.log("cadastro com sucesso!")
+      })
 
-        // function redirecionar(){
-        //   window.location.href= '4.cadastrar.html'
-        // }
+        function redirecionar(){
+          window.location.href= '4.cadastrar.html'
+        }
 
-        // redirecionar();
-
-
+        redirecionar();
 
       })
 
