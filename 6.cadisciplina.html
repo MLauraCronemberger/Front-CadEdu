@@ -66,7 +66,7 @@
           data.forEach(serie => {
             let option = document.createElement("option");
             option.value= serie.id;
-            option.textContent=  `${serie.serie} ${serie.turma} ${serie.nivelEnsino}`;
+            option.textContent=  `${serie.serie}${serie.turma} - ${serie.nivelEnsino}`;
             dropdown.appendChild(option);
           });
 
@@ -95,12 +95,9 @@
         console.log("cadastro com sucesso!")
       })
 
-        function redirecionar(){
-          window.location.href= '4.cadastrar.html'
-        }
-
-        redirecionar();
-
+      document.getElementById('disc').value = "";
+      document.getElementById('ch').value = "";
+      document.getElementById('serie').value = "";
       })
 
 
