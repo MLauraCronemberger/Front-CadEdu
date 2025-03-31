@@ -82,7 +82,7 @@
 
               <h1>Séries Relacionadas</h1>
               <select id="serieDocente" name="serieDocente" class="dropdown-select-col" required>
-                  <option value="" disabled selected></option>
+                  <option  value="" disabled selected></option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -95,6 +95,8 @@
                   <option value="Vespertino">Vespertino</option>
                   <option value="Noturno">Noturno</option>
               </select>
+
+              
 
               <button class="submit-button" id="cadastrar">Cadastrar</button>
               <!-- <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a> -->
@@ -129,11 +131,7 @@
         console.log("cadastro com sucesso!")
       })
 
-      //   function redirecionar(){
-      //     window.location.href = "4.cadastrar.html";
-      //   }
-
-      //   redirecionar();
+      document.getElementById('nomeDocente').value = "";
       })
 
     </script>
