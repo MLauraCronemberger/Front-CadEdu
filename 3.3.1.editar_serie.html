@@ -36,26 +36,26 @@
       <div class="input-info">
         <h1>Série</h1>
         <div class="forms">
-        <input type= "text" id="serie" name="serie" value="3º" required>
+        <input type= "text" id="serie" name="serie" required>
 
         <h1>Nível de Ensino</h1>
-        <select id="nivelEnsinoSerie" name="nivelEnsinoSerie" class="dropdown-select" required>
+        <select id="nivel_ensino" name="nivel_ensino" class="dropdown-select" required>
             <option value="" disabled selected></option>
             <option value="Ensino Infantil">Ensino Infantil</option>
             <option value="Ensino Fundamental I">Ensino Fundamental I</option>
             <option value="Ensino Fundamental II">Ensino Fundamental II</option>
-            <option value="Ensino Médio" selected>Ensino Médio</option>
+            <option value="Ensino Médio">Ensino Médio</option>
         </select>
 
         <h1>Turma</h1>
         <div class="forms">
-        <input type= "text" id="turmaSerie" name="turmaSerie" value="C" required>
+        <input type= "text" id="turma" name="turma" required>
 
         <h1>Turno</h1>
-        <select id="turnoSerie" name="turnoSerie" class="dropdown-select" required>
+        <select id="turno" name="turno" class="dropdown-select" required>
             <option value="" disabled selected></option>
             <option value="Matutino">Matutino</option>
-            <option value="Vespertino" selected>Vespertino</option>
+            <option value="Vespertino">Vespertino</option>
             <option value="Noturno">Noturno</option>
         </select>
 
@@ -66,18 +66,28 @@
     </main>
 
     <script>
-      //Pegar o id que ele passa na url e chamar a funcao put, adicionar um evento que dispara a funcao put assim q ele clicar no botao de editar.
-      // document.addEventListener("click", function (event) {
-      //   if (event.target.classList.contains("edit-button")) {
-      //     const serieId = event.target.closest("tr").value;
-      //     window.location.href = `3.3.1.editar_serie.html?id=${serieId}`;
-      //   }
-      // });
 
       const params = new URLSearchParams(window.location.search);
       const serieId = params.get("id");
 
-      console.log(serieId); // Aqui você terá o ID passado na URL
+      console.log(serieId);
+
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch(`http://localhost:8080/serie/${serieId}`)
+          .then((response) => response.json())
+          .then((data) => {
+
+            document.getElementById('serie').value = data.serie;
+            document.getElementById('nivel_ensino').value = data.nivelEnsino;
+            document.getElementById('turma').value = data.turma;
+            document.getElementById('turno').value = data.turno;
+          })
+
+          .catch((error) => console.error("Erro ao carregar séries:", error));
+      });
+
+
+
 
 
 
