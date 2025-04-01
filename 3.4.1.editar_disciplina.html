@@ -53,74 +53,80 @@
     </main>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function(){
-        fetch("http://localhost:8080/serie/cadastradas")
-        .then(response => response.json())
-        .then(data =>{
-          let dropdown = document.getElementById("serie");
 
-          data.forEach(serie => {
+
+    document.addEventListener("DOMContentLoaded", function () {
+      let dropdown = document.getElementById("serie");
+      fetch("http://localhost:8080/serie/cadastradas")
+        .then((response) => response.json())
+        .then((data) => {
+          data.forEach((serie) => {
             let option = document.createElement("option");
-            option.value= serie.id;
-            option.textContent=  `${serie.serie}${serie.turma} - ${serie.nivelEnsino}`;
+            option.value = serie.id;
+            option.textContent = `${serie.serie}${serie.turma} - ${serie.nivelEnsino}`;
             dropdown.appendChild(option);
           });
-
+          carregarDadosDisciplina();
         })
+        .catch((error) => console.error("Erro ao carregar séries:", error));
+    });
 
-        .catch(error => console.error("Erro ao carregar séries:", error));
-              
-      })
-
-
+    function carregarDadosDisciplina() {
       const params = new URLSearchParams(window.location.search);
       const disciplinaId = params.get("id");
 
-      console.log(disciplinaId);
+      if (!disciplinaId) return; // Evita erro se não houver ID na URL
 
-      document.addEventListener("DOMContentLoaded", function () {
-        fetch(`http://localhost:8080/disciplina/${disciplinaId}`)
-          .then((response) => response.json())
-          .then((data) => {
-            document.getElementById('disc').value = data.disc;
-            document.getElementById('ch').value = data.ch;
-            // document.getElementById('serie').value = `${data.serie.serie}${data.serie.turma} - ${data.serie.nivelEnsino}`;
+      fetch(`http://localhost:8080/disciplina/${disciplinaId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("disc").value = data.disc;
+          document.getElementById("ch").value = data.ch;
 
-            // 3. Encontra a opção que tem o mesmo texto da série da disciplina
-            let serieTexto = `${data.serie.serie}${data.serie.turma} - ${data.serie.nivelEnsino}`;
-            let dropdown = document.getElementById("serie");
-            let options = dropdown.options;
+          // 4. Seleciona a série correspondente no dropdown
+          let serieTexto = `${data.serie.serie}${data.serie.turma} - ${data.serie.nivelEnsino}`;
+          let options = document.getElementById("serie").options;
 
-            for (let i = 0; i < options.length; i++) {
-                if (options[i].textContent === serieTexto) {
-                    dropdown.selectedIndex = i;
-                    break;
-                }
+          for (let i = 0; i < options.length; i++) {
+            if (options[i].textContent === serieTexto) {
+              document.getElementById("serie").selectedIndex = i;
+              break;
             }
-          })
+          }
+        })
+        .catch((error) => console.error("Erro ao carregar disciplina:", error));
+    }
 
-          .catch((error) => console.error("Erro ao carregar disciplina:", error));
-      });
+    const params = new URLSearchParams(window.location.search);
+    const disciplinaId = params.get("id");
 
-      // document.getElementById('editar').addEventListener("click", ()=>{
-      //   const disciplinaEditada= {
-      //     disc: document.getElementById('disc').value,
-      //     ch: document.getElementById('ch').value,
-      //     serie:{ id: document.getElementById('serie').value }
-      //   }
 
-      //   fetch(`http://localhost:8080/disciplina/editar/${disciplinaId}`, {
-      //   method: "PUT", // HTTP method
-      //   headers: {
-      //       "Content-Type": "application/json" // Specify the content type
-      //   },
-      //   body: JSON.stringify(disciplinaEditada) // Convert data to JSON string
-      // }).then(r => {
-      //   console.log(disciplinaEditada)
-      //   alert("Disciplina editada com sucesso!")
-      // })
+      document.getElementById('editar').addEventListener("click", ()=>{
+        const disciplinaEditada= {
+          disc: document.getElementById('disc').value,
+          ch: document.getElementById('ch').value,
+          serie:{ id: document.getElementById('serie').value }
+        }
 
-      // })
+        fetch(`http://localhost:8080/disciplina/editar/${disciplinaId}`, {
+        method: "PUT", // HTTP method
+        headers: {
+            "Content-Type": "application/json" // Specify the content type
+        },
+        body: JSON.stringify(disciplinaEditada) // Convert data to JSON string
+      }).then(r => {
+        console.log(disciplinaEditada)
+        alert("Disciplina editada com sucesso!")
+
+        function redirecionar (){
+        window.location.href = "3.4.lista_disciplinas.html";
+      }
+
+      redirecionar();
+      })
+
+      })
+
 
 
 
