@@ -82,13 +82,6 @@
           .catch((error) => console.error("Erro ao carregar séries:", error));
       });
 
-      // document.addEventListener("click", function (event) {
-      //   if (event.target.classList.contains("edit-button")) {
-      //     const serieId = event.target.closest("tr").value;
-      //     window.location.href = `3.3.1.editar_serie.html?id=${serieId}`;
-      //   }
-      // });
-
     function removerLinha(botao) {
       const linha = botao.closest("tr"); // Encontra a linha associada ao botão
       if (linha) {
@@ -122,6 +115,15 @@
       deletarSerie(serieId, event.target);
     }
   });
+
+      //   document.addEventListener("click", function (event) {
+      //   if (event.target.classList.contains("edit-button")) {
+      //     const serieId = event.target.closest("tr").value;
+      //     window.location.href = `3.3.1.editar_serie.html?id=${serieId}`;
+      //   }
+      // });
+
+
 
 
     </script>
