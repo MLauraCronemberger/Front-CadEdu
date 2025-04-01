@@ -86,11 +86,34 @@
           .catch((error) => console.error("Erro ao carregar séries:", error));
       });
 
+      document.getElementById('editar').addEventListener("click", ()=>{
+      const serieEditada = {
+        serie: document.getElementById('serie').value,
+        nivelEnsino: document.getElementById('nivel_ensino').value,
+        turma: document.getElementById('turma').value,
+        turno: document.getElementById('turno').value
+      }
+
+      fetch(`http://localhost:8080/serie/editar/${serieId}`, {
+        method: "PUT", // HTTP method
+        headers: {
+            "Content-Type": "application/json" // Specify the content type
+      },
+        body: JSON.stringify(serieEditada) // Convert data to JSON string
+      }).then(r => {
+        console.log(serieEditada)
+        console.log("edição feita com sucesso!")
+        alert("Série editada com sucesso!")
+      })
 
 
+      function redirecionar (){
+        window.location.href = "3.3.lista_series.html";
+      }
 
+      redirecionar();
 
-
+    })
 
 
 
