@@ -36,35 +36,96 @@
       <div class="input-info">
         <h1>Nome da Disciplina</h1>
         <div class="forms">
-        <input type= "text" id="disc" name="disc" value="Física" required>
+        <input type= "text" id="disc" name="disc" required>
 
         <h1>Carga Horária</h1>
         <div class="forms">
-        <input type= "text" id="ch" name="ch" value="60hrs" required>
-
-        <h1>Nível de Ensino Alvo</h1>
-        <select id="nivelEnsinoDisc" name="nivelEnsinoDisc" class="dropdown-select" required>
-            <option value="" disabled selected></option>
-            <option value="Ensino Infantil">Ensino Infantil</option>
-            <option value="Ensino Fundamental I">Ensino Fundamental I</option>
-            <option value="Ensino Fundamental II">Ensino Fundamental II</option>
-            <option value="Ensino Médio" selected>Ensino Médio</option>
-        </select>
+        <input type= "text" id="ch" name="ch" required>
 
         <h1>Séries Relacionadas</h1>
-        <select id="serieDisc" name="serieDisc" class="dropdown-select" required>
-            <option value="" disabled selected></option>
-            <option value="1º-EF1">1º-EF1</option>
-            <option value="2º- EF1">2º- EF1</option>
-            <option value="3º- EM" selected>3º- EM</option>
+        <select id="serie" name="serie" class="dropdown-select" required>
+          <option value="">Selecione uma série</option>
         </select>
 
     </div>
 
-    <a href="3.4.lista_disciplinas.html"><button class="submit-button">Editar</button></a>
-        
-
+    <button class="submit-button" id="editar">Editar</button>
     </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function(){
+        fetch("http://localhost:8080/serie/cadastradas")
+        .then(response => response.json())
+        .then(data =>{
+          let dropdown = document.getElementById("serie");
+
+          data.forEach(serie => {
+            let option = document.createElement("option");
+            option.value= serie.id;
+            option.textContent=  `${serie.serie}${serie.turma} - ${serie.nivelEnsino}`;
+            dropdown.appendChild(option);
+          });
+
+        })
+
+        .catch(error => console.error("Erro ao carregar séries:", error));
+              
+      })
+
+
+      const params = new URLSearchParams(window.location.search);
+      const disciplinaId = params.get("id");
+
+      console.log(disciplinaId);
+
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch(`http://localhost:8080/disciplina/${disciplinaId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById('disc').value = data.disc;
+            document.getElementById('ch').value = data.ch;
+            // document.getElementById('serie').value = `${data.serie.serie}${data.serie.turma} - ${data.serie.nivelEnsino}`;
+
+            // 3. Encontra a opção que tem o mesmo texto da série da disciplina
+            let serieTexto = `${data.serie.serie}${data.serie.turma} - ${data.serie.nivelEnsino}`;
+            let dropdown = document.getElementById("serie");
+            let options = dropdown.options;
+
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].textContent === serieTexto) {
+                    dropdown.selectedIndex = i;
+                    break;
+                }
+            }
+          })
+
+          .catch((error) => console.error("Erro ao carregar disciplina:", error));
+      });
+
+      // document.getElementById('editar').addEventListener("click", ()=>{
+      //   const disciplinaEditada= {
+      //     disc: document.getElementById('disc').value,
+      //     ch: document.getElementById('ch').value,
+      //     serie:{ id: document.getElementById('serie').value }
+      //   }
+
+      //   fetch(`http://localhost:8080/disciplina/editar/${disciplinaId}`, {
+      //   method: "PUT", // HTTP method
+      //   headers: {
+      //       "Content-Type": "application/json" // Specify the content type
+      //   },
+      //   body: JSON.stringify(disciplinaEditada) // Convert data to JSON string
+      // }).then(r => {
+      //   console.log(disciplinaEditada)
+      //   alert("Disciplina editada com sucesso!")
+      // })
+
+      // })
+
+
+
+    </script>
+
 
 
   </body>

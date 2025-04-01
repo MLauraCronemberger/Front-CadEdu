@@ -74,14 +74,53 @@
             <td>${disciplina.disc} </td>
             <td>${disciplina.ch}h </td>
             <td>${disciplina.serie.nivelEnsino} </td>
-            <td><button class="edit-button">Editar</button></td>
-            <td><button class="edit-button">Excluir</button></td>
+            <td><button class="edit-button" value="${disciplina.id}">Editar</button></td>
+            <td><button class="delete-button" value="${disciplina.id}">Excluir</button></td>
             `;
               listagem.appendChild(tr);
             });
           })
 
           .catch((error) => console.error("Erro ao carregar disciplinas:", error));
+      });
+
+      function deletarDisciplina(disciplinaId, botao) {
+        fetch(`http://localhost:8080/disciplina/deletar/${disciplinaId}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Disciplina excluída com sucesso!");
+              const linha = botao.closest("tr");
+              if (linha) {
+                linha.remove();
+              }
+            } else {
+              alert(
+                "Erro ao excluir a disciplina. Essa disciplina está associada a outro cadastro, então não pode ser excluída."
+              );
+              return response.text().then((text) => {});
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao deletar disciplina:", error);
+          });
+      }
+
+      document
+        .querySelector("tbody")
+        .addEventListener("click", function (event) {
+          if (event.target.classList.contains("delete-button")) {
+            const disciplinaId = event.target.getAttribute("value"); // Obtém o ID da série
+            deletarDisciplina(disciplinaId, event.target);
+          }
+        });
+
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("edit-button")) {
+          const disciplinaId = event.target.closest("tr").value;
+          window.location.href = `3.4.1.editar_disciplina.html?id=${disciplinaId}`;
+        }
       });
   </script>
 
