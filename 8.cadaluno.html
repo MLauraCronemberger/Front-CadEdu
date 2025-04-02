@@ -64,45 +64,18 @@
 
           <main class="col2">
             <div class="section">
-              <h1 style="font-size: 22px;">Informações Escolares</h1>
+              <h1 style="font-size: 22px;">Informação para Matrícula</h1>
             </div>
             <div class="input-info">
 
-              <h1>Nível de Ensino</h1>
-              <select id="nivelEnsino" name="nivelEnsino" class="dropdown-select-col" required>
-                  <option value="" disabled selected></option>
-                  <option value="Ensino Infantil">Ensino Infantil</option>
-                  <option value="Ensino Fundamental I">Ensino Fundamental I</option>
-                  <option value="Ensino Fundamental II">Ensino Fundamental II</option>
-                  <option value="Ensino Médio">Ensino Médio</option>
-              </select>
-
               <h1>Série Atual</h1>
-              <select id="serieAluno" name="serieAluno" class="dropdown-select-col" required>
-                  <option value="" disabled selected></option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
+              <select id="serie" name="serie" class="dropdown-select-col" required>
+                <option value="">Selecione uma série</option>
               </select>
 
-              <h1>Turma</h1>
-              <select id="turmaAluno" name="turmaAluno" class="dropdown-select-col" required>
-                  <option value="" disabled selected></option>
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-                  <option value="C">C</option>
-              </select>
-
-              <h1>Turno</h1>
-              <select id="turnoAluno" name="turnoAluno" class="dropdown-select-col" required>
-                  <option value="" disabled selected></option>
-                  <option value="Matutino">Matutino</option>
-                  <option value="Vespertino">Vespertino</option>
-                  <option value="Noturno">Noturno</option>
-              </select>
+              <br>
 
               <button class="submit-button" id="cadastrar">Cadastrar</button>
-              <!-- <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a> -->
            
           </main>
 
@@ -110,6 +83,25 @@
     </main>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function(){
+        fetch("http://localhost:8080/serie/cadastradas")
+        .then(response => response.json())
+        .then(data =>{
+          let dropdown = document.getElementById("serie");
+
+          data.forEach(serie => {
+            let option = document.createElement("option");
+            option.value= serie.id;
+            option.textContent=  `${serie.serie}${serie.turma} - ${serie.nivelEnsino}`;
+            dropdown.appendChild(option);
+          });
+
+        })
+
+        .catch(error => console.error("Erro ao carregar séries:", error));
+              
+      })
+
       document.getElementById('cadastrar').addEventListener("click", ()=>{
         const alunoCadastrado = {
           nome: document.getElementById('nomeAluno').value,
@@ -117,10 +109,7 @@
           datnasc: document.getElementById('datnascAluno').value,
           responsavel: document.getElementById('responsavel').value,
           foto: document.getElementById('fotoAluno').value,
-          // nivelEnsino: document.getElementById('nivelEnsinoAluno').value,
-          // serie: document.getElementById('serieAluno').value,
-          // turma: document.getElementById('turmaAluno').value,
-          // turno: document.getElementById('turnoAluno').value
+          serie: { id: document.getElementById('serie').value }
       }
 
       fetch("http://localhost:8080/aluno/cadastrar", {
@@ -131,16 +120,16 @@
         body: JSON.stringify(alunoCadastrado) // Convert data to JSON string
       }).then(r => {
         console.log(alunoCadastrado)
-        console.log("cadastro com sucesso!")
+        alert("Aluno Cadastrado com Sucesso")
       })
 
+      document.getElementById('nomeAluno').value= "";
+      document.getElementById('cpfAluno').value= "";
+      document.getElementById('datnascAluno').value= "";
+      document.getElementById('responsavel').value= "";
+      document.getElementById('fotoAluno').value= "";
+      document.getElementById('serie').value = "";
 
-    // function redirecionar(){
-    //   window.location.href = "4.cadastrar.html"
-
-    // }
-
-    // redirecionar();
     
     })
     </script>
