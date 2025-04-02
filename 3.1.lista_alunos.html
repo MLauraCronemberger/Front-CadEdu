@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CadEdu- Alunos Cadastrados</title>
     <link rel="stylesheet" href="style.css" />
-
   </head>
 
   <body>
@@ -24,108 +22,104 @@
         <a href="3.menu.html" class="sidebar-elements-href">Menu</a>
       </div>
       <div class="sidebar-elements">
-        <a href="4.cadastrar.html" class="sidebar-elements-href">Cadastrar Informações</a>
+        <a href="4.cadastrar.html" class="sidebar-elements-href"
+          >Cadastrar Informações</a
+        >
       </div>
     </aside>
 
-
-
     <div class="main">
-        <div class="main-content">
-            <h1 class="page-title">Alunos Cadastrados</h1>
-            
-            <div class="search-container">
-                <label class="search-label">Pesquisar Aluno</label>
-                <input type="text" class="search-input" placeholder="Digite o nome do aluno:">
-                <button class="search-button">Pesquisar</button>
-            </div>
-            
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Nível de Ensino</th>
-                        <th>Série/Turma</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Maria Laura Cronemberger</td>
-                        <td>Ensino Médio</td>
-                        <td>3°A</td>
-                        <td><a href="3.1.1.editar_aluno.html"><button class="edit-button">Editar</button></a></td>
-                        <td><button class="edit-button">Excluir</button></td>
-                    </tr>
-                    <tr>
-                        <td>Isabela Moreira</td>
-                        <td>Ensino Médio</td>
-                        <td>1°B</td>
-                        <td><button class="edit-button">Editar</button></td>
-                        <td><button class="edit-button">Excluir</button></td>
-                    </tr>
-                    <tr>
-                        <td>Marcos Vinicius Jansem</td>
-                        <td>Ensino Fundamental I</td>
-                        <td>1°D</td>
-                        <td><button class="edit-button">Editar</button></td>
-                        <td><button class="edit-button">Excluir</button></td>
-                    </tr>
-                    <tr>
-                        <td>José Nunes Neto</td>
-                        <td>Ensino Fundamental II</td>
-                        <td>7°C</td>
-                        <td><button class="edit-button">Editar</button></td>
-                        <td><button class="edit-button">Excluir</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                        <td><button class="edit-button">Excluir</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                        <td><button class="edit-button">Excluir</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                        <td><button class="edit-button">Excluir</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                        <td><button class="edit-button">Excluir</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                        <td><button class="edit-button">Excluir</button></td>
-                    </tr>
-                    <tr class="empty-row">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="edit-button">Editar</button></td>
-                        <td><button class="edit-button">Excluir</button></td>
-                    </tr>
-                </tbody>
-            </table>
+      <div class="main-content">
+        <h1 class="page-title">Alunos Cadastrados</h1>
+
+        <div class="search-container">
+          <label class="search-label">Pesquisar Aluno</label>
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Digite o nome do aluno:"
+          />
+          <button class="search-button">Pesquisar</button>
         </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Nível de Ensino</th>
+              <th>Série/Turma</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="listagemAlunos">
+            <tr data-id="infoAluno" value=""></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("http://172.20.2.33:8080/aluno/cadastrados")
+          .then((response) => response.json())
+          .then((data) => {
+            let listagem = document.getElementById("listagemAlunos");
 
+            data.forEach((aluno) => {
+              let tr = document.createElement("tr");
+              tr.value = aluno.id;
+              tr.innerHTML = `
+            <td>${aluno.nome} </td>
+            <td>${aluno.serie.nivelEnsino} </td>
+            <td>${aluno.serie.serie}º${aluno.serie.turma} </td>
+            <td><button class="edit-button" value="${aluno.id}">Editar</button></td>
+            <td><button class="delete-button" value= "${aluno.id}">Excluir</button></td>
+            `;
+              listagem.appendChild(tr);
+            });
+          })
 
+          .catch((error) =>
+            console.error("Erro ao carregar os alunos:", error)
+          );
+      });
+
+      function deletarAluno(alunoId, botao) {
+        fetch(`http://172.20.2.33:8080/aluno/deletar/${alunoId}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Aluno excluído com sucesso!");
+              const linha = botao.closest("tr");
+              if (linha) {
+                linha.remove();
+              }
+            } else {
+              alert("Erro ao excluir o aluno.");
+              return response.text().then((text) => {});
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao deletar o aluno:", error);
+          });
+      }
+
+      document
+        .querySelector("tbody")
+        .addEventListener("click", function (event) {
+          if (event.target.classList.contains("delete-button")) {
+            const alunoId = event.target.getAttribute("value"); // Obtém o ID da série
+            deletarAluno(alunoId, event.target);
+          }
+        });
+
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("edit-button")) {
+          const alunoId = event.target.closest("tr").value;
+          window.location.href = `3.1.1.editar_aluno.html?id=${alunoId}`;
+        }
+      });
+    </script>
   </body>
 </html>
