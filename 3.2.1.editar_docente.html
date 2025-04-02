@@ -40,23 +40,23 @@
             <div class="input-info">
               <h1>Nome Completo</h1>
               <div class="forms-col">
-              <input type= "text" id="nomeDocente" name="nomeDocente" value="André Bezerra" required> 
+              <input type= "text" id="nomeDocente" name="nomeDocente" required> 
 
               <h1>CPF</h1>
               <div class="forms-col">
-              <input type= "text" id="cpfDocente" name="cpfDocente" value="000.000.000-00" required> 
+              <input type= "text" id="cpfDocente" name="cpfDocente" required> 
 
               <h1>Data de Nascimento</h1>
               <div class="forms-col">
-              <input type= "date" id="dnascDocente" name="dnascDocente" value="1972-09-12" required> 
+              <input type= "date" id="dnascDocente" name="dnascDocente" required> 
 
               <h1>Telefone/Celular</h1>
               <div class="forms-col">
-              <input type= "text" id="telDocente" name="telDocente" value="00 00000-0000" required>
+              <input type= "text" id="telDocente" name="telDocente" required>
               
               <h1>E-mail</h1>
               <div class="forms-col">
-              <input type= "text" id="emailDocente" name="emailDocente" value="a@b.com" required> 
+              <input type= "text" id="emailDocente" name="emailDocente" required> 
 
             </div>
            
@@ -70,40 +70,109 @@
 
               <h1>Cargo</h1>
               <div class="forms-col">
-              <input type= "text" id="cargoDocente" name="cargoDocente" value="Professor" required> 
+              <input type= "text" id="cargoDocente" name="cargoDocente" required> 
 
               <h1>Disciplina Relacionada</h1>
-              <select id="discDocente" name="discDocente" class="dropdown-select-col" required>
-                  <option value="" disabled selected></option>
-                  <option value="Matemática">Matemática</option>
-                  <option value="Português">Português</option>
-                  <option value="Física" selected>Física</option>
+              <select id="disciplina" name="disciplina" class="dropdown-select-col" required>
+                  <option value="">Selecione uma disciplina</option>
               </select>
 
-              <h1>Séries Relacionadas</h1>
-              <select id="serieDocente" name="serieDocente" class="dropdown-select-col" required>
-                  <option value="" disabled selected></option>
-                  <option value="1ºA">1ºA</option>
-                  <option value="2ºA">2ºA</option>
-                  <option value="3ºA" selected>3ºA</option>
-              </select>
+              <button class="submit-button" id="editar">Editar</button>
 
-              <h1>Turno</h1>
-              <select id="turnoDocente" name="turnoDocente" class="dropdown-select-col" required>
-                  <option value="" disabled selected></option>
-                  <option value="Matutino">Matutino</option>
-                  <option value="Vespertino" selected>Vespertino</option>
-                  <option value="Noturno">Noturno</option>
-              </select>
-
-              <a href="3.2.lista_docentes.html"><button class="submit-button">Editar</button></a>
-           
           </main>
-
         </div>
-        
-
     </main>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function(){
+        fetch("http://localhost:8080/disciplina/cadastradas")
+        .then(response => response.json())
+        .then(data =>{
+          let dropdown = document.getElementById("disciplina");
+
+          data.forEach(disciplina => {
+            let option = document.createElement("option");
+            option.value= disciplina.id;
+            option.textContent=  `${disciplina.disc}- ${disciplina.serie.serie}º${disciplina.serie.turma}- ${disciplina.serie.nivelEnsino}`;
+            dropdown.appendChild(option);
+          });
+
+          carregarDadosDocente();
+
+        })
+
+        .catch(error => console.error("Erro ao carregar disciplinas:", error));
+              
+      })
+
+      function carregarDadosDocente() {
+      const params = new URLSearchParams(window.location.search);
+      const docenteId = params.get("id");
+
+      if (!docenteId) return; // Evita erro se não houver ID na URL
+
+      fetch(`http://localhost:8080/docente/${docenteId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById('nomeDocente').value = data.nome;
+          document.getElementById('cpfDocente').value = data.cpf;
+          document.getElementById('dnascDocente').value = data.datnasc;
+          document.getElementById('telDocente').value = data.tel;
+          document.getElementById('emailDocente').value = data.email;
+          document.getElementById('cargoDocente').value = data.cargo;
+
+          let docenteOpcao = `${data.disciplina.disc}- ${data.disciplina.serie.serie}º${data.disciplina.serie.turma}- ${data.disciplina.serie.nivelEnsino}`;
+          let options = document.getElementById("disciplina").options;
+
+          for (let i = 0; i < options.length; i++) {
+            if (options[i].textContent === docenteOpcao) {
+              document.getElementById("disciplina").selectedIndex = i;
+              break;
+            }
+          }
+        })
+        .catch((error) => console.error("Erro ao carregar disciplina:", error));
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const docenteId = params.get("id");
+
+
+      document.getElementById('editar').addEventListener("click", ()=>{
+        const docenteEditado= {
+          nome: document.getElementById('nomeDocente').value,
+          cpf: document.getElementById('cpfDocente').value,
+          datnasc: document.getElementById('dnascDocente').value,
+          tel: document.getElementById('telDocente').value,
+          email: document.getElementById('emailDocente').value,
+          cargo: document.getElementById('cargoDocente').value,
+          disciplina: { id: document.getElementById('disciplina').value },
+        }
+
+        fetch(`http://localhost:8080/docente/editar/${docenteId}`, {
+        method: "PUT", // HTTP method
+        headers: {
+            "Content-Type": "application/json" // Specify the content type
+        },
+        body: JSON.stringify(docenteEditado) // Convert data to JSON string
+      }).then(r => {
+        console.log(docenteEditado)
+        alert("Docente editado com sucesso!")
+
+        function redirecionar (){
+        window.location.href = "3.2.lista_docentes.html";
+      }
+
+      redirecionar();
+      })
+
+      })
+
+
+
+
+    </script>
 
 
   </body>
