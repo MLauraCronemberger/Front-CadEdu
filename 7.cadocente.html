@@ -73,33 +73,12 @@
               <input type= "text" id="cargoDocente" name="cargoDocente" required> 
 
               <h1>Disciplina Relacionada</h1>
-              <select id="discDocente" name="discDocente" class="dropdown-select-col" required>
-                  <option value="" disabled selected></option>
-                  <option value="Matemática">Matemática</option>
-                  <option value="Português">Português</option>
-                  <option value="Física">Física</option>
+              <select id="disciplina" name="disciplina" class="dropdown-select-col" required>
+                  <option value="">Selecione uma disciplina</option>
               </select>
-
-              <h1>Séries Relacionadas</h1>
-              <select id="serieDocente" name="serieDocente" class="dropdown-select-col" required>
-                  <option  value="" disabled selected></option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-              </select>
-
-              <h1>Turno</h1>
-              <select id="turnoDocente" name="turnoDocente" class="dropdown-select-col" required>
-                  <option value="" disabled selected></option>
-                  <option value="Matutino">Matutino</option>
-                  <option value="Vespertino">Vespertino</option>
-                  <option value="Noturno">Noturno</option>
-              </select>
-
-              
 
               <button class="submit-button" id="cadastrar">Cadastrar</button>
-              <!-- <a href="4.cadastrar.html"><button class="submit-button">Cadastrar</button></a> -->
+
            
           </main>
 
@@ -107,6 +86,26 @@
     </main>
 
     <script>
+
+document.addEventListener("DOMContentLoaded", function(){
+        fetch("http://localhost:8080/disciplina/cadastradas")
+        .then(response => response.json())
+        .then(data =>{
+          let dropdown = document.getElementById("disciplina");
+
+          data.forEach(disciplina => {
+            let option = document.createElement("option");
+            option.value= disciplina.id;
+            option.textContent=  `${disciplina.disc}-${disciplina.serie.serie}${disciplina.serie.turma}-${disciplina.serie.nivelEnsino}`;
+            dropdown.appendChild(option);
+          });
+
+        })
+
+        .catch(error => console.error("Erro ao carregar disciplinas:", error));
+              
+      })
+
       document.getElementById('cadastrar').addEventListener("click", ()=>{
         const docenteCadastrado = {
           nome: document.getElementById('nomeDocente').value,
@@ -115,9 +114,7 @@
           tel: document.getElementById('telDocente').value,
           email: document.getElementById('emailDocente').value,
           cargo: document.getElementById('cargoDocente').value,
-          // disc: document.getElementById('discDocente').value,
-          // serie: document.getElementById('serieDocente').value,
-          // turno: document.getElementById('turnoDocente').value
+          disciplina: { id: document.getElementById('disciplina').value },
         }
 
         fetch("http://localhost:8080/docente/cadastrar", {
@@ -132,6 +129,15 @@
       })
 
       document.getElementById('nomeDocente').value = "";
+      document.getElementById('nomeDocente').value= "";
+      document.getElementById('cpfDocente').value= "";
+      document.getElementById('dnascDocente').value= "";
+      document.getElementById('telDocente').value= "";
+      document.getElementById('emailDocente').value= "";
+      document.getElementById('cargoDocente').value= "";
+      document.getElementById('disciplina').value= "";
+
+      alert("Docente Cadastrado com Sucesso!")
       })
 
     </script>

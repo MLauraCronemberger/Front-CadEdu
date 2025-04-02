@@ -196,6 +196,11 @@ body {
   margin-bottom: 10px;
 }
 
+.dropdown-select-col:focus {
+  border-color: #582c5f;
+
+}
+
 .forms-col input {
   width: 70%;
   padding: 8px;
