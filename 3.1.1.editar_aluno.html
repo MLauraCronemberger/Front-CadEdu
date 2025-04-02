@@ -84,7 +84,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function(){
-        fetch("http://172.20.2.33:8080/serie/cadastradas")
+        fetch("http://localhost:8080/serie/cadastradas")
         .then(response => response.json())
         .then(data =>{
           let dropdown = document.getElementById("serie");
@@ -110,7 +110,7 @@
 
       if (!alunoId) return; // Evita erro se não houver ID na URL
 
-      fetch(`http://172.20.2.33:8080/aluno/${alunoId}`)
+      fetch(`http://localhost:8080/aluno/${alunoId}`)
         .then((response) => response.json())
         .then((data) => {
           document.getElementById('nomeAluno').value = data.nome;
@@ -146,7 +146,7 @@
           serie: { id: document.getElementById('serie').value }
         }
 
-        fetch(`http://172.20.2.33:8080/aluno/editar/${alunoId}`, {
+        fetch(`http://localhost:8080/aluno/editar/${alunoId}`, {
         method: "PUT", // HTTP method
         headers: {
             "Content-Type": "application/json" // Specify the content type

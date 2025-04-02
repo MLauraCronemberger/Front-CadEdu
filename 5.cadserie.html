@@ -76,7 +76,7 @@ document.getElementById('cadastrar').addEventListener("click", ()=>{
         turno: document.getElementById('turno').value
       }
 
-      fetch("http://172.20.2.33:8080/serie/cadastrar", {
+      fetch("http://localhost:8080/serie/cadastrar", {
         method: "POST", // HTTP method
         headers: {
             "Content-Type": "application/json" // Specify the content type

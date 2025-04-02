@@ -57,13 +57,13 @@
 
     document.addEventListener("DOMContentLoaded", function () {
       let dropdown = document.getElementById("serie");
-      fetch("http://172.20.2.33:8080/serie/cadastradas")
+      fetch("http://localhost:8080/serie/cadastradas")
         .then((response) => response.json())
         .then((data) => {
           data.forEach((serie) => {
             let option = document.createElement("option");
             option.value = serie.id;
-            option.textContent = `${serie.serie}${serie.turma} - ${serie.nivelEnsino}`;
+            option.textContent = `${serie.serie}${serie.turma} - ${serie.nivelEnsino}- ${serie.turno}`;
             dropdown.appendChild(option);
           });
           carregarDadosDisciplina();
@@ -77,14 +77,14 @@
 
       if (!disciplinaId) return; // Evita erro se não houver ID na URL
 
-      fetch(`http://172.20.2.33:8080/disciplina/${disciplinaId}`)
+      fetch(`http://localhost:8080/disciplina/${disciplinaId}`)
         .then((response) => response.json())
         .then((data) => {
           document.getElementById("disc").value = data.disc;
           document.getElementById("ch").value = data.ch;
 
           // 4. Seleciona a série correspondente no dropdown
-          let serieTexto = `${data.serie.serie}${data.serie.turma} - ${data.serie.nivelEnsino}`;
+          let serieTexto = `${data.serie.serie}${data.serie.turma} - ${data.serie.nivelEnsino}- ${data.serie.turno}`;
           let options = document.getElementById("serie").options;
 
           for (let i = 0; i < options.length; i++) {
@@ -108,7 +108,7 @@
           serie:{ id: document.getElementById('serie').value }
         }
 
-        fetch(`http://172.20.2.33:8080/disciplina/editar/${disciplinaId}`, {
+        fetch(`http://localhost:8080/disciplina/editar/${disciplinaId}`, {
         method: "PUT", // HTTP method
         headers: {
             "Content-Type": "application/json" // Specify the content type
