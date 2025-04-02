@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function(){
           data.forEach(disciplina => {
             let option = document.createElement("option");
             option.value= disciplina.id;
-            option.textContent=  `${disciplina.disc}-${disciplina.serie.serie}${disciplina.serie.turma}-${disciplina.serie.nivelEnsino}`;
+            option.textContent=  `${disciplina.disc}- ${disciplina.serie.serie}º${disciplina.serie.turma}- ${disciplina.serie.nivelEnsino}`;
             dropdown.appendChild(option);
           });
 
@@ -124,9 +124,11 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         body: JSON.stringify(docenteCadastrado) // Convert data to JSON string
       }).then(r => {
-        console.log(docenteCadastrado)
-        console.log("cadastro com sucesso!")
-      })
+        if (!r.ok) throw new Error();
+        return r.json();
+    })
+    .then(() => alert("Cadastro realizado com sucesso!"))
+    .catch(() => alert("Essa matéria já é dada por um professor. Tente novamente."));
 
       document.getElementById('nomeDocente').value = "";
       document.getElementById('nomeDocente').value= "";
@@ -137,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function(){
       document.getElementById('cargoDocente').value= "";
       document.getElementById('disciplina').value= "";
 
-      alert("Docente Cadastrado com Sucesso!")
       })
 
     </script>
