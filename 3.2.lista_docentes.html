@@ -81,6 +81,43 @@
 
           .catch((error) => console.error("Erro ao carregar séries:", error));
       });
+
+      function deletarSerie(docenteId, botao) {
+        fetch(`http://localhost:8080/docente/deletar/${docenteId}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Docente excluído com sucesso!");
+              const linha = botao.closest("tr");
+              if (linha) {
+                linha.remove();
+              }
+            } else {
+              alert("Erro ao excluir o docente.");
+              return response.text().then((text) => {});
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao deletar o docente:", error);
+          });
+      }
+
+      document
+        .querySelector("tbody")
+        .addEventListener("click", function (event) {
+          if (event.target.classList.contains("delete-button")) {
+            const docenteId = event.target.getAttribute("value"); // Obtém o ID da série
+            deletarSerie(docenteId, event.target);
+          }
+        });
+
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("edit-button")) {
+          const docenteId = event.target.closest("tr").value;
+          window.location.href = `3.2.1.editar_docente.html?id=${docenteId}`;
+        }
+      });
     </script>
   </body>
 </html>
