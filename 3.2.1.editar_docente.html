@@ -87,10 +87,11 @@
 
       const params = new URLSearchParams(window.location.search);
       const docenteId = params.get("id");
+      const disciplinaId = params.get("id2")
 
 
         document.addEventListener("DOMContentLoaded", function(){
-        fetch("http://localhost:8080/disciplina/cadastradas")
+        fetch(`http://localhost:8080/disciplina/dropdown-edit/${disciplinaId}`)
         .then(response => response.json())
         .then(data =>{
           let dropdown = document.getElementById("disciplina");

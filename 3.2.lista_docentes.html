@@ -52,7 +52,7 @@
             </tr>
           </thead>
           <tbody id="listagemDocentes">
-            <tr data-id="infoDocente" value=""></tr>
+            <tr data-id="infoDocente" value="" data-idisc=""></tr>
           </tbody>
         </table>
       </div>
@@ -68,6 +68,7 @@
             data.forEach((docente) => {
               let tr = document.createElement("tr");
               tr.value = docente.id;
+              tr.setAttribute("data-idisc", docente.disciplina.id);
               tr.innerHTML = `
             <td>${docente.nome} </td>
             <td>${docente.cargo} </td>
@@ -115,7 +116,8 @@
       document.addEventListener("click", function (event) {
         if (event.target.classList.contains("edit-button")) {
           const docenteId = event.target.closest("tr").value;
-          window.location.href = `3.2.1.editar_docente.html?id=${docenteId}`;
+          const disciplinaId = event.target.closest("tr").dataset.idisc;
+          window.location.href = `3.2.1.editar_docente.html?id=${docenteId}&id2=${disciplinaId}`;
         }
       });
     </script>
