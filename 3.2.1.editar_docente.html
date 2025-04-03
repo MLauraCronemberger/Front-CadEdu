@@ -85,6 +85,10 @@
 
     <script>
 
+      const params = new URLSearchParams(window.location.search);
+      const docenteId = params.get("id");
+
+
         document.addEventListener("DOMContentLoaded", function(){
         fetch("http://localhost:8080/disciplina/cadastradas")
         .then(response => response.json())
@@ -134,9 +138,6 @@
         })
         .catch((error) => console.error("Erro ao carregar disciplina:", error));
     }
-
-    const params = new URLSearchParams(window.location.search);
-    const docenteId = params.get("id");
 
 
       document.getElementById('editar').addEventListener("click", ()=>{
