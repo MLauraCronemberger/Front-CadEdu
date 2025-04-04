@@ -105,7 +105,7 @@
         const disciplinaEditada= {
           disc: document.getElementById('disc').value,
           ch: document.getElementById('ch').value,
-          serie:{ id: document.getElementById('serie').value }
+          serie: document.getElementById('serie').value.trim() == "" ? null:{ id: document.getElementById('serie').value }
         }
 
         fetch(`http://localhost:8080/disciplina/editar/${disciplinaId}`, {
@@ -118,14 +118,14 @@
         console.log(disciplinaEditada)
         alert("Disciplina editada com sucesso!")
 
-        function redirecionar (){
-        window.location.href = "3.4.lista_disciplinas.html";
-      }
+      //   function redirecionar (){
+      //   window.location.href = "3.4.lista_disciplinas.html";
+      // }
 
-      redirecionar();
-      })
+      // redirecionar();
+      
 
-      })
+      })})
 
 
 
