@@ -82,24 +82,37 @@
           disc: document.getElementById('disc').value,
           ch: document.getElementById('ch').value,
           serie:{ id: document.getElementById('serie').value }
+        }  
+        if (disciplinaCadastrada.disc == "" || disciplinaCadastrada.ch == "" || disciplinaCadastrada.serie == "") {
+        alert("Preencha todos os campos!");
+      } else {
+        try {
+          fetch("http://localhost:8080/disciplina/cadastrar", {
+          method: "POST", // HTTP method
+          headers: {
+              "Content-Type": "application/json" // Specify the content type
+          },
+          body: JSON.stringify(disciplinaCadastrada) // Convert data to JSON string
+        }).then(async r => {
+          if(r.ok){
+            alert("Disciplina cadastrada com sucesso!")
+          }else{
+            const errorData = await r.json();
+            errorData.errors.forEach(element => {
+              throw new Error(element.defaultMessage);
+            }); 
+          }
+        }).catch(error => {
+        alert(error.message);
+    });         
+        } catch (error) {
+          alert(error);
         }
-
-        fetch("http://localhost:8080/disciplina/cadastrar", {
-        method: "POST", // HTTP method
-        headers: {
-            "Content-Type": "application/json" // Specify the content type
-        },
-        body: JSON.stringify(disciplinaCadastrada) // Convert data to JSON string
-      }).then(r => {
-        console.log(disciplinaCadastrada)
-        console.log("cadastro com sucesso!")
-        alert("Disciplina cadastrada com sucesso!")
-      })
 
       document.getElementById('disc').value = "";
       document.getElementById('ch').value = "";
       document.getElementById('serie').value = "";
-      })
+      }})
 
 
     </script>
