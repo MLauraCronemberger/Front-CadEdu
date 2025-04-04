@@ -93,27 +93,39 @@
         turma: document.getElementById('turma').value,
         turno: document.getElementById('turno').value
       }
+      if (serieEditada.serie == "" || serieEditada.nivelEnsino == "" || serieEditada.turma == "" || serieEditada.turno == "") {
+        alert("Preencha todos os campos!");
+      } else {
+        try {
+          fetch(`http://localhost:8080/serie/editar/${serieId}`, {
+          method: "PUT", // HTTP method
+          headers: {
+              "Content-Type": "application/json" // Specify the content type
+          },
+          body: JSON.stringify(serieEditada) // Convert data to JSON string
+        }).then(async r => {
+          if(r.ok){
+            alert("Série editada com sucesso!")
+            function redirecionar (){
+              window.location.href = "3.3.lista_series.html";
+             }
 
-      fetch(`http://localhost:8080/serie/editar/${serieId}`, {
-        method: "PUT", // HTTP method
-        headers: {
-            "Content-Type": "application/json" // Specify the content type
-      },
-        body: JSON.stringify(serieEditada) // Convert data to JSON string
-      }).then(r => {
-        console.log(serieEditada)
-        console.log("edição feita com sucesso!")
-        alert("Série editada com sucesso!")
-      })
+           redirecionar();
+            
+          }else{
+            const errorData = await r.json();
+            errorData.errors.forEach(element => {
+              throw new Error(element.defaultMessage);
+            }); 
+          }
+        }).catch(error => {
+        alert(error.message);
+    });         
+        } catch (error) {
+          alert(error);
+        }
 
-
-      function redirecionar (){
-        window.location.href = "3.3.lista_series.html";
-      }
-
-      redirecionar();
-
-    })
+    }})
 
 
 
