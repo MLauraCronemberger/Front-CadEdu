@@ -112,16 +112,31 @@
           serie: { id: document.getElementById('serie').value }
       }
 
-      fetch("http://localhost:8080/aluno/cadastrar", {
-        method: "POST", // HTTP method
-        headers: {
-            "Content-Type": "application/json" // Specify the content type
-        },
-        body: JSON.stringify(alunoCadastrado) // Convert data to JSON string
-      }).then(r => {
-        console.log(alunoCadastrado)
-        alert("Aluno Cadastrado com Sucesso")
-      })
+      if (alunoCadastrado.nome == "" || alunoCadastrado.cpf == "" || alunoCadastrado.datnasc == "" || alunoCadastrado.responsavel == "" || alunoCadastrado.foto == "" || alunoCadastrado.serie == "") {
+        alert("Preencha todos os campos!");
+      } else {
+        try {
+          fetch("http://localhost:8080/aluno/cadastrar", {
+          method: "POST", // HTTP method
+          headers: {
+              "Content-Type": "application/json" // Specify the content type
+          },
+          body: JSON.stringify(alunoCadastrado) // Convert data to JSON string
+        }).then(async r => {
+          if(r.ok){
+            alert("Aluno cadastrado com sucesso!")
+          }else{
+            const errorData = await r.json();
+            errorData.errors.forEach(element => {
+              throw new Error(element.defaultMessage);
+            }); 
+          }
+        }).catch(error => {
+        alert(error.message);
+    });         
+        } catch (error) {
+          alert(error);
+        }
 
       document.getElementById('nomeAluno').value= "";
       document.getElementById('cpfAluno').value= "";
@@ -131,7 +146,7 @@
       document.getElementById('serie').value = "";
 
     
-    })
+    }})
     </script>
 
 
