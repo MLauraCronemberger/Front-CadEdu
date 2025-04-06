@@ -149,7 +149,7 @@
           tel: document.getElementById('telDocente').value,
           email: document.getElementById('emailDocente').value,
           cargo: document.getElementById('cargoDocente').value,
-          disciplina: { id: document.getElementById('disciplina').value },
+          disciplina: document.getElementById('disciplina').value.trim() == "" ? null:{ id: document.getElementById('disciplina').value },
         }
 
         fetch(`http://localhost:8080/docente/editar/${docenteId}`, {
@@ -162,11 +162,11 @@
         console.log(docenteEditado)
         alert("Docente editado com sucesso!")
 
-        function redirecionar (){
-        window.location.href = "3.2.lista_docentes.html";
-      }
+    //    function redirecionar (){
+    //    window.location.href = "3.2.lista_docentes.html";
+    //  }
 
-      redirecionar();
+    //  redirecionar();
       })
 
       })
