@@ -117,7 +117,7 @@
           document.getElementById('cpfAluno').value = data.cpf;
           document.getElementById('datnascAluno').value = data.datnasc;
           document.getElementById('responsavel').value = data.responsavel;
-          document.getElementById('fotoAluno').value = data.foto;
+          // document.getElementById('fotoAluno').value = data.foto;
 
           let alunoOpcao = `${data.serie.serie}º${data.serie.turma} - ${data.serie.nivelEnsino}`;
           let options = document.getElementById("serie").options;
@@ -143,7 +143,7 @@
           datnasc: document.getElementById('datnascAluno').value,
           responsavel: document.getElementById('responsavel').value,
           foto: document.getElementById('fotoAluno').value,
-          serie: { id: document.getElementById('serie').value }
+          serie: document.getElementById('serie').value.trim() == "" ? null:{ id: document.getElementById('serie').value },
         }
 
         fetch(`http://localhost:8080/aluno/editar/${alunoId}`, {
@@ -156,11 +156,11 @@
         console.log(alunoEditado)
         alert("Aluno editado com sucesso!")
 
-        function redirecionar (){
-        window.location.href = "3.1.lista_alunos.html";
-      }
+//        function redirecionar (){
+//        window.location.href = "3.1.lista_alunos.html";
+//      }
 
-      redirecionar();
+//      redirecionar();
       })
 
       })
