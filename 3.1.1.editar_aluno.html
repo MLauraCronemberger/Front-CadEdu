@@ -145,25 +145,37 @@
           foto: document.getElementById('fotoAluno').value,
           serie: document.getElementById('serie').value.trim() == "" ? null:{ id: document.getElementById('serie').value },
         }
+        if (alunoEditado.nome == "" || alunoEditado.cpf == "" || alunoEditado.datnasc == "" || alunoEditado.responsavel == "" || alunoEditado.serie == "") {
+        alert("Preencha todos os campos!");
+      } else {
+        try {
+          fetch(`http://localhost:8080/aluno/editar/${alunoId}`, {
+          method: "PUT", // HTTP method
+          headers: {
+              "Content-Type": "application/json" // Specify the content type
+          },
+          body: JSON.stringify(alunoEditado) // Convert data to JSON string
+        }).then(async r => {
+          if(r.ok){
+            alert("Aluno editado com sucesso!")
+            window.location.href = "3.1.lista_alunos.html";
+          }else{
+            const errorData = await r.json();
+            errorData.errors.forEach(element => {
+              throw new Error(element.defaultMessage);
+            }); 
+          }
+        }).catch(error => {
+        alert(error.message);
+    });         
+        } catch (error) {
+          alert(error);
+        }
 
-        fetch(`http://localhost:8080/aluno/editar/${alunoId}`, {
-        method: "PUT", // HTTP method
-        headers: {
-            "Content-Type": "application/json" // Specify the content type
-        },
-        body: JSON.stringify(alunoEditado) // Convert data to JSON string
-      }).then(r => {
-        console.log(alunoEditado)
-        alert("Aluno editado com sucesso!")
 
-//        function redirecionar (){
-//        window.location.href = "3.1.lista_alunos.html";
-//      }
 
-//      redirecionar();
-      })
+      }})
 
-      })
 
     </script>
 

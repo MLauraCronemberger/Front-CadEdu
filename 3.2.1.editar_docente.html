@@ -151,25 +151,36 @@
           cargo: document.getElementById('cargoDocente').value,
           disciplina: document.getElementById('disciplina').value.trim() == "" ? null:{ id: document.getElementById('disciplina').value },
         }
+        if (docenteEditado.nome == "" || docenteEditado.cpf == "" || docenteEditado.datnasc == "" || docenteEditado.tel == "" || docenteEditado.email == "" || docenteEditado.cargo == "" || docenteEditado.disciplina == "") {
+        alert("Preencha todos os campos!");
+      } else {
+        try {
+          fetch(`http://localhost:8080/docente/editar/${docenteId}`, {
+          method: "PUT", // HTTP method
+          headers: {
+              "Content-Type": "application/json" // Specify the content type
+          },
+          body: JSON.stringify(docenteEditado) // Convert data to JSON string
+        }).then(async r => {
+          if(r.ok){
+            alert("Docente editado com sucesso!")
+            window.location.href = "3.2.lista_docentes.html";
+          }else{
+            const errorData = await r.json();
+            errorData.errors.forEach(element => {
+              throw new Error(element.defaultMessage);
+            }); 
+          }
+        }).catch(error => {
+        alert(error.message);
+    });         
+        } catch (error) {
+          alert(error);
+        }
 
-        fetch(`http://localhost:8080/docente/editar/${docenteId}`, {
-        method: "PUT", // HTTP method
-        headers: {
-            "Content-Type": "application/json" // Specify the content type
-        },
-        body: JSON.stringify(docenteEditado) // Convert data to JSON string
-      }).then(r => {
-        console.log(docenteEditado)
-        alert("Docente editado com sucesso!")
+    }})
 
-    //    function redirecionar (){
-    //    window.location.href = "3.2.lista_docentes.html";
-    //  }
 
-    //  redirecionar();
-      })
-
-      })
 
 
     </script>

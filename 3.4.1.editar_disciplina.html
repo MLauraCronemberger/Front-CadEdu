@@ -107,25 +107,36 @@
           ch: document.getElementById('ch').value,
           serie: document.getElementById('serie').value.trim() == "" ? null:{ id: document.getElementById('serie').value }
         }
+        if (disciplinaEditada.disc == "" || disciplinaEditada.ch == "" || disciplinaEditada.serie == "") {
+        alert("Preencha todos os campos!");
+      } else {
+        try {
+          fetch(`http://localhost:8080/disciplina/editar/${disciplinaId}`, {
+          method: "PUT", // HTTP method
+          headers: {
+              "Content-Type": "application/json" // Specify the content type
+          },
+          body: JSON.stringify(disciplinaEditada) // Convert data to JSON string
+        }).then(async r => {
+          if(r.ok){
+            alert("Disciplina editada com sucesso!")
+            window.location.href = "3.4.lista_disciplinas.html";
+          }else{
+            const errorData = await r.json();
+            errorData.errors.forEach(element => {
+              throw new Error(element.defaultMessage);
+            }); 
+          }
+        }).catch(error => {
+        alert(error.message);
+    });         
+        } catch (error) {
+          alert(error);
+        }
 
-        fetch(`http://localhost:8080/disciplina/editar/${disciplinaId}`, {
-        method: "PUT", // HTTP method
-        headers: {
-            "Content-Type": "application/json" // Specify the content type
-        },
-        body: JSON.stringify(disciplinaEditada) // Convert data to JSON string
-      }).then(r => {
-        console.log(disciplinaEditada)
-        alert("Disciplina editada com sucesso!")
-
-      //   function redirecionar (){
-      //   window.location.href = "3.4.lista_disciplinas.html";
-      // }
-
-      // redirecionar();
       
 
-      })})
+    }})
 
 
 
