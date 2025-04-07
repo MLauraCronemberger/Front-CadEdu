@@ -60,7 +60,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        fetch("http://localhost:8080/docente/cadastrados")
+        fetch("http://172.20.2.33:8080/docente/cadastrados")
           .then((response) => response.json())
           .then((data) => {
             let listagem = document.getElementById("listagemDocentes");
@@ -80,11 +80,11 @@
             });
           })
 
-          .catch((error) => console.error("Erro ao carregar séries:", error));
+          .catch((error) => console.error("Erro ao carregar docentes:", error));
       });
 
       function deletarSerie(docenteId, botao) {
-        fetch(`http://localhost:8080/docente/deletar/${docenteId}`, {
+        fetch(`http://172.20.2.33:8080/docente/deletar/${docenteId}`, {
           method: "DELETE",
         })
           .then((response) => {

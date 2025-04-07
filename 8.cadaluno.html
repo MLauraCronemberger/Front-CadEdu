@@ -84,7 +84,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function(){
-        fetch("http://localhost:8080/serie/cadastradas")
+        fetch("http://172.20.2.33:8080/serie/cadastradas")
         .then(response => response.json())
         .then(data =>{
           let dropdown = document.getElementById("serie");
@@ -116,7 +116,7 @@
         alert("Preencha todos os campos!");
       } else {
         try {
-          fetch("http://localhost:8080/aluno/cadastrar", {
+          fetch("http://172.20.2.33:8080/aluno/cadastrar", {
           method: "POST", // HTTP method
           headers: {
               "Content-Type": "application/json" // Specify the content type

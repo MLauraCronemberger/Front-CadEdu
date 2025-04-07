@@ -73,7 +73,7 @@
       console.log(serieId);
 
       document.addEventListener("DOMContentLoaded", function () {
-        fetch(`http://localhost:8080/serie/${serieId}`)
+        fetch(`http://172.20.2.33:8080/serie/${serieId}`)
           .then((response) => response.json())
           .then((data) => {
 
@@ -97,7 +97,7 @@
         alert("Preencha todos os campos!");
       } else {
         try {
-          fetch(`http://localhost:8080/serie/editar/${serieId}`, {
+          fetch(`http://172.20.2.33:8080/serie/editar/${serieId}`, {
           method: "PUT", // HTTP method
           headers: {
               "Content-Type": "application/json" // Specify the content type

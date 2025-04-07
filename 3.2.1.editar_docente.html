@@ -91,7 +91,7 @@
 
 
         document.addEventListener("DOMContentLoaded", function(){
-        fetch(`http://localhost:8080/disciplina/dropdown-edit/${disciplinaId}`)
+        fetch(`http://172.20.2.33:8080/disciplina/dropdown-edit/${disciplinaId}`)
         .then(response => response.json())
         .then(data =>{
           let dropdown = document.getElementById("disciplina");
@@ -117,7 +117,7 @@
 
       if (!docenteId) return; // Evita erro se não houver ID na URL
 
-      fetch(`http://localhost:8080/docente/${docenteId}`)
+      fetch(`http://172.20.2.33:8080/docente/${docenteId}`)
         .then((response) => response.json())
         .then((data) => {
           document.getElementById('nomeDocente').value = data.nome;
@@ -155,7 +155,7 @@
         alert("Preencha todos os campos!");
       } else {
         try {
-          fetch(`http://localhost:8080/docente/editar/${docenteId}`, {
+          fetch(`http://172.20.2.33:8080/docente/editar/${docenteId}`, {
           method: "PUT", // HTTP method
           headers: {
               "Content-Type": "application/json" // Specify the content type
