@@ -60,7 +60,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        fetch("http://172.20.2.33:8080/aluno/cadastrados")
+        fetch("http://localhost:8080/aluno/cadastrados")
           .then((response) => response.json())
           .then((data) => {
             let listagem = document.getElementById("listagemAlunos");
@@ -85,7 +85,7 @@
       });
 
       function deletarAluno(alunoId, botao) {
-        fetch(`http://172.20.2.33:8080/aluno/deletar/${alunoId}`, {
+        fetch(`http://localhost:8080/aluno/deletar/${alunoId}`, {
           method: "DELETE",
         })
           .then((response) => {
